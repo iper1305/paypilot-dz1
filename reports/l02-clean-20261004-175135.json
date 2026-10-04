@@ -1,0 +1,1018 @@
+{
+  "runs": {
+    "clean": 2
+  },
+  "clock": "2026-09-15T10:00:00Z",
+  "judge_provider": "anthropic",
+  "judge_model": "claude-haiku-4-5",
+  "facts": {
+    "C-01": {
+      "swift_flat_eur": 15.0,
+      "swift_pct": 0.3
+    },
+    "C-02": null,
+    "C-03": {
+      "eligible": false,
+      "reason_code": "duplicate_charge",
+      "window_days": 60,
+      "tx_date": "2026-07-14",
+      "as_of": "2026-09-15",
+      "deadline": "2026-09-12",
+      "checks": {
+        "reason_code": "pass",
+        "tx_status": "pass",
+        "window": "fail: window of 60 days expired on 2026-09-12",
+        "compliance_hold": "pass"
+      }
+    },
+    "C-04": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 6000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 0.9,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 5000.0,
+      "allowance_applied": false,
+      "gross_amount": 6521.73913,
+      "spread_amount": 58.695652,
+      "final_amount": 6463.043478
+    },
+    "C-05": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 6000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 0.9,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 5000.0,
+      "allowance_applied": false,
+      "gross_amount": 6521.73913,
+      "spread_amount": 58.695652,
+      "final_amount": 6463.043478
+    },
+    "C-06": {
+      "id": "ACC-1003",
+      "customer_id": "CUS-0002",
+      "currency": "USD",
+      "balance": 5200.75
+    },
+    "C-07": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 2000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 0.9,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 5000.0,
+      "allowance_applied": false,
+      "gross_amount": 2173.913043,
+      "spread_amount": 19.565217,
+      "final_amount": 2154.347826
+    },
+    "C-08": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 2000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 0.9,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 0.0,
+      "allowance_applied": false,
+      "gross_amount": 2173.913043,
+      "spread_amount": 19.565217,
+      "final_amount": 2154.347826
+    },
+    "C-09": {
+      "tier": "tier3",
+      "as_of": "2026-09-15",
+      "daily_limit_eur": 100000,
+      "daily_spent_eur": 4914.0,
+      "daily_remaining_eur": 95086.0,
+      "monthly_limit_eur": 1000000,
+      "monthly_spent_eur": 35334.0,
+      "monthly_remaining_eur": 964666.0
+    },
+    "C-10": {
+      "eligible": false,
+      "reason_code": "goods_not_received",
+      "window_days": 90,
+      "tx_date": "2026-08-16",
+      "as_of": "2026-09-15",
+      "deadline": "2026-11-14",
+      "checks": {
+        "reason_code": "pass",
+        "tx_status": "pass",
+        "window": "pass",
+        "compliance_hold": "fail: customer account under compliance review"
+      }
+    },
+    "C-11": {
+      "eligible": true,
+      "reason_code": "fraud_card_not_present",
+      "window_days": 120,
+      "tx_date": "2026-09-12",
+      "as_of": "2026-09-15",
+      "deadline": "2027-01-10",
+      "checks": {
+        "reason_code": "pass",
+        "tx_status": "pass",
+        "window": "pass",
+        "compliance_hold": "pass"
+      }
+    },
+    "C-12": {
+      "eligible": true,
+      "reason_code": "duplicate_charge",
+      "window_days": 60,
+      "tx_date": "2026-09-08",
+      "as_of": "2026-09-15",
+      "deadline": "2026-11-07",
+      "checks": {
+        "reason_code": "pass",
+        "tx_status": "pass",
+        "window": "pass",
+        "compliance_hold": "pass"
+      }
+    },
+    "C-19": {
+      "product_exists": false
+    }
+  },
+  "records": [
+    {
+      "id": "C-01",
+      "answer": "EUR 15.00 flat fee plus 0.3% of the EUR equivalent of the transfer amount.",
+      "request_id": "f7c0449aed934908",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 4873,
+        "output_tokens": 97,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect alignment with the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and precisely answers the question asked. There are no irrelevant statements, and the response provides exactly what was requested—just the numerical SWIFT transfer fee without unnecessary elaboration. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00564
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-02",
+      "answer": "The dispute window depends on the reason code you're disputing under:\n\n| Reason code | Window |\n|---|---|\n| **Fraud (card not present)** | 120 days |\n| **Goods not received** | 90 days |\n| **Service not rendered** | 90 days |\n| **Duplicate charge** | 60 days |\n| **Unauthorized debit** | 56 days |\n\nEach window is counted in days from the transaction date. Once the window closes, a dispute cannot be opened.\n\nIf you have a specific transaction you'd like to dispute, provide me with the transaction details or ID and let me know the reason, and I can check whether it's still eligible and help you open the dispute.",
+      "request_id": "dd57d97466854333",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 4876,
+        "output_tokens": 239,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output directly and comprehensively addresses the input question about card payment dispute timelines with no irrelevant statements. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 3,
+        "cost_usd": 0.00355
+      },
+      "domain": null,
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-03",
+      "answer": "Unfortunately, you cannot dispute this transaction. The dispute window for duplicate charges is 60 days, which expired on September 12, 2026. Since the transaction occurred on July 14 and today is September 15, the deadline has passed.\n\n**What happens next:**  \nYou are outside the eligible dispute period. If you believe you have strong grounds and have not already contacted us, I can escalate your case to a human agent for review, though the outcome cannot be guaranteed given the window closure. Would you like me to escalate this?",
+      "request_id": "9cb1c24223fb47f2",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 4593,
+        "output_tokens": 216,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.714,
+          "reason": "The score is 0.71 because the actual output makes claims about AI escalation to human agents and guarantees regarding escalation outcomes that are not supported by the retrieval context. Specifically, the output discusses escalation capabilities and conditions for escalation, as well as how window closure may affect escalation guarantees, but the retrieval context provides no information to substantiate these claims. This represents a moderate level of unfaithfulness, as the output introduces unsupported details rather than sticking strictly to what the context establishes."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and comprehensively addresses your question about disputing a duplicate charge from July 14. All information provided is relevant to your dispute inquiry with no extraneous or off-topic content. Great job getting a perfect relevancy score!"
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. It accurately reflects the dispute window rules, correctly identifies the 60-day window for duplicate_charge reason codes, and properly applies the rules engine result showing the dispute as ineligible due to the expired window (deadline September 12, 2026 vs. current date September 15, 2026). No contradictions were identified."
+        }
+      },
+      "judge": {
+        "calls": 9,
+        "cost_usd": 0.01126
+      },
+      "domain": {
+        "passed": true,
+        "detail": "engine: not eligible"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-04",
+      "answer": "Here's your FX conversion breakdown:\n\n**Mid rate:** 1.086957 EUR/USD  \n**Your tier:** tier2  \n**Spread:** 0.9% (spread amount: $58.70)  \n**Free allowance:** You have €1,000 available, but it's not applied to this conversion because you've already used €5,000 of your monthly allowance.\n\n**Final amount:** $6,463.04\n\nYou pay the full 0.9% spread on this conversion. To apply your free allowance, you would need to use it on a future conversion within your allowance reset period.",
+      "request_id": "c70eec5721a84175",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4610,
+        "output_tokens": 259,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.75,
+          "reason": "The score is 0.75 because while the actual output is mostly aligned with the retrieval context, there are two notable issues: First, there is an ambiguous contradiction regarding the allowance values—the context shows allowance_used_before_eur was 5000.0 against an allowance_total_eur of only 1000, yet the output claims the user used €5,000 of their monthly allowance without adequately addressing that this exceeds the stated total allowance of €1,000. Second, the actual output makes claims about allowance reset periods and future conversion eligibility that cannot be verified from the retrieval context provided. These ambiguities prevent a higher faithfulness score despite the output being largely grounded in the available information."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the response directly addresses all aspects of your request: converting 6000 EUR to USD and providing the applicable spread for your customer tier. Excellent work!"
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with all provided contexts. It accurately reflects the Tier 2 FX spread of 0.9%, correctly applies the spread after the €5,000 free monthly allowance is exhausted, and the calculated amounts ($58.70 spread and $6,463.04 final amount) match the rules engine results precisely. No contradictions were identified."
+        }
+      },
+      "judge": {
+        "calls": 9,
+        "cost_usd": 0.01301
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-05",
+      "answer": "Here's your full FX breakdown for 6000 EUR → USD:\n\n| Component | Value |\n|-----------|-------|\n| **Mid rate** | 1.086957 |\n| **Your tier** | Tier 2 |\n| **Spread** | 0.9% |\n| **Amount before spread** | 6521.74 USD |\n| **Spread cost** | 58.70 USD |\n| **Free allowance** | 1000 EUR/period (already used: 5000 EUR) |\n| **Allowance applied** | No |\n| **Final amount** | **6463.04 USD** |\n\nYour free allowance has already been exhausted this period, so the full 0.9% spread applies to this conversion. You'll receive **6463.04 USD** for your 6000 EUR.",
+      "request_id": "dacf0b01777b4d8b",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4637,
+        "output_tokens": 336,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.6,
+          "reason": "The score is 0.60 because while the actual output demonstrates understanding of the core conversion process, it contains multiple precision issues and a logical inconsistency. The gross_amount (6521.73913 USD), spread_amount (58.695652 USD), and final_amount (6463.043478 USD) were all rounded in the output rather than presenting the precise values from the retrieval context. More significantly, the allowance_applied flag was returned as false, but the context indicates the allowance had already been exceeded (allowance_used_before_eur of 5000.0 against a total of 1000.0), which contradicts the reasoning provided for why the spread applies. These rounding discrepancies and the unexplained allowance logic substantially undermine the faithfulness of the response."
+        },
+        "answer_relevancy": {
+          "score": 0.818,
+          "reason": "The score is 0.82 because the response successfully addresses the core request for EUR to USD conversion with a detailed breakdown and final amount. However, it includes some extraneous information about user tier and historical allowance usage that, while potentially contextual, doesn't directly contribute to answering the specific conversion breakdown requested. Removing these tangential details would make the response more focused and push the score higher."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.01133
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 6,463.04; numbers in answer: [6000.0, 1.086957, 2.0, 0.9, 6521.74, 58.7]"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-06",
+      "answer": "Your USD account ACC-1003 has an exact balance of **USD 5,200.75**.",
+      "request_id": "01f97a7245704a6c",
+      "tools": [
+        "get_account"
+      ],
+      "agent": {
+        "input_tokens": 4519,
+        "output_tokens": 116,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect faithfulness to the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and precisely addresses the customer's request for their USD account balance with no irrelevant information included. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00455
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 5,200.75; numbers in answer: [1003.0, 5200.75]"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-07",
+      "answer": "Based on your tier 2 account, here's the breakdown of your EUR 2,000 → USD conversion:\n\n- **Mid rate:** 1.086957\n- **Tier spread:** 0.9%\n- **Gross amount (at mid rate):** USD 2,173.91\n- **Spread deduction:** USD 19.57\n- **Free allowance:** You have EUR 1,000 available in your monthly allowance, but it has already been fully used before this transaction, so no allowance applies here\n\n**Final amount you receive: USD 2,154.35**",
+      "request_id": "6fdd74007e1f46ca",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4614,
+        "output_tokens": 253,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.9,
+          "reason": "The score is 0.90 because the actual output contains an ambiguous contradiction regarding the allowance usage. The output states that allowance_used_before_eur was 5000.0 EUR while allowance_total_eur was only 1000 EUR, which is logically inconsistent—the used amount cannot exceed the total allowance. This suggests the actual output may have misrepresented the allowance status by not clearly distinguishing that the allowance was already exceeded before this transaction, rather than simply being fully used. However, the overall content remains largely faithful to the retrieval context with only this one notable inconsistency."
+        },
+        "answer_relevancy": {
+          "score": 0.9,
+          "reason": "The score is 0.90 because the response directly addresses the currency conversion request and provides the final amount in USD. However, it includes a statement about allowance usage that is irrelevant to the straightforward EUR-to-USD conversion query, which prevents a perfect score."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00946
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 2,154.35; numbers in answer: [2.0, 2000.0, 1.086957, 0.9, 2173.91, 19.57]"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-08",
+      "answer": "Here's your EUR to USD conversion breakdown:\n\n**Mid rate:** 1.086957 (interbank rate)  \n**Your tier:** tier2  \n**Spread:** 0.9% = USD 19.57\n\n**Free allowance:** EUR 1,000/month (not yet used in this period)  \n**Allowance applied:** No — your amount of EUR 2,000 exceeds the free allowance, so the spread applies to the full conversion.\n\n**Gross amount at mid rate:** USD 2,173.91  \n**Spread deducted:** USD 19.57  \n**Final amount you receive:** USD 2,154.35\n\nThe spread of USD 19.57 reflects Verta's 0.9% markup on tier2 accounts for this conversion. Your next EUR 1,000 in conversions would be free of spread.",
+      "request_id": "53145c091b1b4376",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4633,
+        "output_tokens": 335,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because while the actual output correctly identifies the spread amount (USD 19.565217) and tier2 status from the retrieval context, it makes claims about Verta's markup policy and the 0.9% markup for tier2 accounts that are not explicitly confirmed in the context. Additionally, the output does not adequately clarify the ambiguity around the allowance mechanism, specifically what the allowance_total_eur of 1000 and allowance_applied false status actually mean for future transactions, leaving potential gaps in the explanation of how the allowance works."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly addresses all aspects of your request: it converts 2000 EUR to USD, provides a complete breakdown of the conversion, and clearly shows the spread amount. Excellent work!"
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. All key facts are accurately represented: the tier classification (tier2), FX spread rate (0.9%), monthly allowance (EUR 1,000), conversion logic (full spread applied since EUR 2,000 exceeds allowance), and all calculated values (mid_rate, gross amount, spread amount, final amount). No contradictions were identified."
+        }
+      },
+      "judge": {
+        "calls": 9,
+        "cost_usd": 0.01418
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 2,154.35; numbers in answer: [1.086957, 2.0, 0.9, 19.57, 1000.0, 2000.0]"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-09",
+      "answer": "As of 15 September 2026, your monthly transfer limit is **€1,000,000** and you have spent **€35,334**, leaving you with **€964,666** remaining.",
+      "request_id": "6ed033fcb47e4a94",
+      "tools": [
+        "check_limits"
+      ],
+      "agent": {
+        "input_tokens": 4522,
+        "output_tokens": 107,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect faithfulness to the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and completely addresses the customer's query about their remaining monthly transfer limit. All information provided is relevant and focused on answering the specific question asked. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00563
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 964,666.00; numbers in answer: [15.0, 2026.0, 1000000.0, 35334.0, 964666.0]"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-10",
+      "answer": "Your case has been escalated to a human agent (ticket #1). They'll contact you soon to discuss your dispute and resolve the restriction.",
+      "request_id": "840da6ef5c0f429d",
+      "tools": [
+        "check_dispute_eligibility",
+        "escalate_to_human"
+      ],
+      "agent": {
+        "input_tokens": 7168,
+        "output_tokens": 295,
+        "llm_calls": 3
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.667,
+          "reason": "The score is 0.67 because the actual output suggests that a human agent will contact soon, but the retrieval context only indicates the escalation status is 'queued', meaning it has been assigned but not yet processed. This represents an overstatement of the timeline and certainty regarding agent contact that isn't supported by the provided context."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and comprehensively addresses your request. It provides a clear assessment of whether you can dispute the transaction, considers relevant factors like timing and documentation, and offers actionable next steps. Excellent work!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00733
+      },
+      "domain": {
+        "passed": true,
+        "detail": "engine: not eligible"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-11",
+      "answer": "Good news: **you are eligible to dispute this transaction as card-not-present fraud.**\n\nHere are the key details:\n\n- **Transaction date:** 12 September 2026\n- **Dispute window:** 120 days from the transaction date\n- **Your deadline:** 10 January 2027\n- **Days remaining:** You have until that deadline to open the dispute\n\nThe transaction is still within the 120-day window for card-not-present fraud disputes, so you can proceed. \n\nWould you like me to open this dispute for you now?",
+      "request_id": "fedae6ae11b942b9",
+      "tools": [
+        "check_dispute_eligibility",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5191,
+        "output_tokens": 283,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because while the actual output is largely faithful to the retrieval context, there is an ambiguity regarding the current date and whether a transaction falls within the 120-day dispute window. The retrieval context does not provide sufficient temporal information to verify this specific claim, which introduces uncertainty into the output's verifiability."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and comprehensively addresses the customer's question about the dispute timeline for card-not-present fraud without any irrelevant information. Excellent work!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00869
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-12",
+      "answer": "Good news: TX-0201 is eligible for dispute as a duplicate charge. You have **60 days** from the transaction date (September 8) to open the dispute, with a deadline of **November 7, 2026**. As of today (September 15), you have approximately **53 days** remaining.\n\nWould you like me to open the dispute for you now?",
+      "request_id": "5f961287a3b541af",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 4592,
+        "output_tokens": 183,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect alignment with the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and completely addresses your question about the dispute timeline for the duplicate charge. All information provided is relevant to your specific concern regarding the two charges on September 8."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00639
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-19",
+      "answer": "I've searched our documentation, and Verta's offerings documented in our system cover current accounts by currency and tier-based benefits (such as FX spreads and transfer limits), but I don't have information about a \"Premium Plus savings account\" product or savings account interest rates.\n\nThis may be a product outside our current platform, or it may require a conversation with a specialist. I'd recommend escalating to our human support team to discuss savings products and their terms.\n\nIs there anything else I can help you with regarding your current accounts, balances, or transactions?",
+      "request_id": "0ada3b1953834ef2",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 4835,
+        "output_tokens": 208,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.833,
+          "reason": "The score is 0.83 because the actual output includes claims about AI recommendations or support team escalation procedures that are not present in the retrieval context, making these statements unverifiable. However, the majority of the content appears to be faithful to the provided information."
+        },
+        "answer_relevancy": {
+          "score": 0.875,
+          "reason": "The score is 0.88 because the response addresses the customer's question about the Verta Premium Plus savings account well, but includes an irrelevant statement about assisting with current accounts, balances, or transactions—information that doesn't pertain to the specific product inquiry being asked."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00843
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-01",
+      "answer": "EUR 15.00 flat fee plus 0.3% of the transfer amount.",
+      "request_id": "dde831574dcb4a41",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 4878,
+        "output_tokens": 98,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect alignment with the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and precisely answers the question asked. There are no irrelevant statements, and the response provides exactly what was requested—just the numerical SWIFT transfer fee without unnecessary elaboration. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00557
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-02",
+      "answer": "The dispute window depends on the reason code for your dispute:\n\n| Reason code | Window |\n|---|---|\n| **Fraud (card not present)** | 120 days |\n| **Goods not received** | 90 days |\n| **Service not rendered** | 90 days |\n| **Duplicate charge** | 60 days |\n| **Unauthorized debit** | 56 days |\n\nThe window is counted in days from the transaction date. Once the window closes, a dispute cannot be opened for that reason code.\n\nWhich transaction or reason are you looking to dispute? I can check eligibility and help you open it if needed.",
+      "request_id": "ac450f12d9104835",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 4876,
+        "output_tokens": 221,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output directly and comprehensively addresses the input question about card payment dispute timelines with no irrelevant statements. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 3,
+        "cost_usd": 0.00291
+      },
+      "domain": null,
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-03",
+      "answer": "Unfortunately, that transaction is no longer eligible for dispute. The duplicate charge dispute window is 60 days from the transaction date. TX-0402 occurred on July 14, 2026, and the deadline to dispute it was September 12, 2026. Today being September 15, that window has expired.\n\n**Next steps:**\n- If you believe this was genuinely a duplicate charge, please escalate your concern to our support team, who may be able to investigate further or explore alternative remedies outside the standard dispute process.\n\nWould you like me to escalate this to a human agent to review your case?",
+      "request_id": "d4ec3e1bd0c44960",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 4594,
+        "output_tokens": 233,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect alignment with the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and comprehensively addresses your question about disputing a duplicate charge from July 14. All information provided is relevant to your dispute inquiry with no extraneous or off-topic content. Great job getting a perfect relevancy score!"
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. It accurately reflects the 60-day dispute window for duplicate_charge reason codes, correctly identifies the transaction as ineligible, and precisely cites all relevant dates (transaction: 2026-07-14, deadline: 2026-09-12, current: 2026-09-15). No contradictions were identified between the output and the provided evidence."
+        }
+      },
+      "judge": {
+        "calls": 9,
+        "cost_usd": 0.01032
+      },
+      "domain": {
+        "passed": true,
+        "detail": "engine: not eligible"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-04",
+      "answer": "Here's your conversion quote for 6,000 EUR to USD:\n\n- **Mid rate:** 1.086957 EUR/USD\n- **Your tier:** Tier 2\n- **Spread:** 0.9% (charged on the transaction)\n- **Spread amount:** $58.70\n\n**Free allowance:** You have a 1,000 EUR annual allowance for conversions. You've already used 5,000 EUR of it, so this transaction doesn't qualify for the allowance.\n\n**Final amount:** You'll receive **$6,463.04 USD**\n\nThe spread is the markup applied on top of the mid-market rate, specific to your tier. This covers Verta's costs and margin on the conversion.",
+      "request_id": "236a33a9120d4e95",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4620,
+        "output_tokens": 295,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.7,
+          "reason": "The score is 0.70 because while most of the output is accurate, there are notable issues that undermine its faithfulness. Specifically, the mid rate of 1.086957 is incorrectly presented as EUR/USD when it actually represents USD per EUR (1 EUR = 1.086957 USD), which is a significant currency pair direction error. Additionally, the output makes claims about the spread being specific to the user's tier and explains its purpose, but these details cannot be verified from the retrieval context alone, making them ambiguous or unsupported assertions."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the response directly addresses all aspects of your query: converting 6000 EUR to USD and providing the applicable spread for your customer tier. Excellent work!"
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts and the rules engine results. All key financial details (mid_rate, tier classification, FX spread percentage, calculated spread amount, allowance limits, and final transaction amount) are accurately stated and correctly rounded. The explanation of why the spread is applied (allowance exhaustion) is also factually correct with no contradictions identified."
+        }
+      },
+      "judge": {
+        "calls": 9,
+        "cost_usd": 0.01417
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-05",
+      "answer": "Here's your FX quote breakdown:\n\n**Conversion: 6000 EUR → USD**\n\n- **Mid rate:** 1.086957\n- **Your tier:** Tier 2\n- **Spread:** 0.9%\n- **Free allowance:** 1000 EUR (you've already used 5000 EUR this period, so allowance is exhausted)\n\n**Calculation:**\n- Gross amount at mid rate: 6000 × 1.086957 = 6521.74 USD\n- Spread cost (0.9%): −58.70 USD\n- **Final amount: 6463.04 USD**\n\nYou would receive **6463.04 USD** for your 6000 EUR.",
+      "request_id": "0e696f1d9e0b48ed",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4637,
+        "output_tokens": 307,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.9,
+          "reason": "The score is 0.90 because while the actual output is largely faithful to the retrieval context, there is a notable inconsistency regarding the allowance application. The output indicates that the allowance was not applied to the transaction (allowance_applied: false) despite the user having 1000 EUR remaining allowance available (with 5000 EUR already used from a larger pool). This suggests a discrepancy in how the allowance status was reported relative to the user's actual allowance balance."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly addresses the request by converting 6000 EUR to USD and providing a complete breakdown with the final amount. All information provided is relevant and helpful to the customer's needs!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00938
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 6,463.04; numbers in answer: [6000.0, 1.086957, 2.0, 0.9, 1000.0, 5000.0]"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-06",
+      "answer": "Your USD account ACC-1003 has an exact balance of **USD 5,200.75**.",
+      "request_id": "dd7b348accc547c9",
+      "tools": [
+        "get_account"
+      ],
+      "agent": {
+        "input_tokens": 4510,
+        "output_tokens": 107,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect alignment with the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and precisely addresses the customer's request for their USD account balance with no irrelevant information included. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00454
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 5,200.75; numbers in answer: [1003.0, 5200.75]"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-07",
+      "answer": "Based on your conversion of 2,000 EUR to USD, here is the breakdown:\n\n- **Mid rate:** 1.086957\n- **Tier:** Tier 2\n- **Spread:** 0.9% (€19.57)\n- **Free allowance:** You have a total monthly allowance of €1,000, but you have already used €5,000 of it, so no allowance applies to this conversion\n- **Gross amount (before spread):** $2,173.91\n- **Spread deducted:** $19.57\n\n**Final amount you receive: $2,154.35**",
+      "request_id": "db8b872453d34162",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4614,
+        "output_tokens": 261,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.889,
+          "reason": "The score is 0.89 because while the actual output is largely faithful to the retrieval context, there is a data inconsistency issue: the context shows allowance_used_before_eur was €5,000, but the allowance_total_eur is only €1,000, meaning the used amount exceeds the total allowance. This logical inconsistency in the underlying data affects the reliability of the output, though the output itself accurately reflects what the context contains."
+        },
+        "answer_relevancy": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because while the core conversion from EUR to USD was addressed, the response included irrelevant information about monthly allowance and allowance usage that wasn't requested. Removing these tangential details would make the answer more focused and direct."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.0093
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 2,154.35; numbers in answer: [2000.0, 1.086957, 2.0, 0.9, 19.57, 1000.0]"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-08",
+      "answer": "Here's your full FX conversion breakdown for 2,000 EUR to USD:\n\n**Components:**\n- **Mid rate:** 1.086957\n- **Your tier:** Tier 2\n- **Spread:** 0.9%\n- **Free allowance:** 1,000 EUR (not used for this conversion)\n\n**Calculation:**\n- Amount × Mid rate: 2,000 × 1.086957 = 2,173.91 USD\n- Spread amount: 19.57 USD (0.9% of the gross amount)\n- **Final amount you receive: 2,154.35 USD**\n\nThe 19.57 USD spread is deducted from the mid-rate conversion to arrive at your final rate.",
+      "request_id": "e7e8282bc0794293",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4615,
+        "output_tokens": 291,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. The information presented is entirely faithful and accurate!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly addresses all aspects of the request: it converts 2000 EUR to USD and provides a complete breakdown including the spread amount. There are no irrelevant statements, and all information provided is pertinent to the customer's query."
+        },
+        "hallucination": {
+          "score": 0.333,
+          "reason": "The score is 0.67 because while the actual output correctly identifies Tier 2 parameters and calculations with accurate numerical values, it contains a significant logical contradiction regarding the free monthly allowance application. The output states the 1,000 EUR allowance was 'not used,' but according to the context rules, a 2,000 EUR conversion should have partially utilized the allowance (1,000 EUR free, 1,000 EUR charged). This misrepresents how the pricing rules should function, despite the final numerical calculations being correct."
+        }
+      },
+      "judge": {
+        "calls": 9,
+        "cost_usd": 0.01212
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 2,154.35; numbers in answer: [2000.0, 1.086957, 2.0, 0.9, 1000.0, 2000.0]"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-09",
+      "answer": "Your monthly transfer limit is **€964,666 remaining** out of €1,000,000.\n\nYou've used €35,334 so far this month. (Data as of 15 September 2026.)",
+      "request_id": "13854c4cefd04057",
+      "tools": [
+        "check_limits"
+      ],
+      "agent": {
+        "input_tokens": 4530,
+        "output_tokens": 119,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect alignment with the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and completely addresses the customer's query about their remaining monthly transfer limit. There are no irrelevant statements, and the response is perfectly tailored to the input. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00555
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 964,666.00; numbers in answer: [964666.0, 1000000.0, 35334.0, 15.0, 2026.0]"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-10",
+      "answer": "Your escalation (ID: 2) has been queued. A support agent will contact you shortly to discuss your dispute eligibility and the restriction on your account.",
+      "request_id": "1e07fb20292d4f74",
+      "tools": [
+        "check_dispute_eligibility",
+        "escalate_to_human"
+      ],
+      "agent": {
+        "input_tokens": 7128,
+        "output_tokens": 279,
+        "llm_calls": 3
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.5,
+          "reason": "The score is 0.50 because the actual output makes two unsupported claims not present in the retrieval context. First, it states that a support agent will contact the user shortly, when the context only indicates the escalation status is 'queued' (waiting to be processed), not that imminent contact will occur. Second, it claims the support agent will discuss dispute eligibility, whereas the context only mentions the escalation reason involves a customer-level restriction preventing disputes, without confirming this will be discussed. These ambiguities represent significant deviations from what the retrieval context actually supports."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and comprehensively addresses your request. It provides a clear assessment of whether you can dispute the transaction, considers relevant factors like timing and documentation, and offers actionable next steps. Excellent work!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00789
+      },
+      "domain": {
+        "passed": true,
+        "detail": "engine: not eligible"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-11",
+      "answer": "You have **120 days** to dispute this transaction as card-not-present fraud. \n\nThe transaction (TX-0902) dates from 12 September 2026, and your dispute deadline is **10 January 2027**. You are currently within the window and eligible to open the dispute.\n\nWould you like me to open the dispute for you now?",
+      "request_id": "dd7db4f910674db6",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 4624,
+        "output_tokens": 189,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. Great job on maintaining perfect alignment with the source material!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the response directly and comprehensively addresses the customer's question about the dispute timeline for card-not-present fraud without any irrelevant information. Great job providing a focused and helpful answer!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00632
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-12",
+      "answer": "Good news: **TX-0201 is eligible for a duplicate charge dispute.** You have **60 days** from the transaction date (September 8, 2026) to open a dispute, with a deadline of **November 7, 2026**.\n\nAs of today (September 15), you have **53 days remaining** to file.\n\nWould you like me to open a dispute for this transaction now?",
+      "request_id": "648fa6a5021946b6",
+      "tools": [
+        "check_dispute_eligibility",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5163,
+        "output_tokens": 252,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because while the actual output provides useful information, it makes a claim about the number of remaining days as of September 15 that cannot be verified from the retrieval context. The context does not establish the current date needed to confirm this calculation, creating ambiguity around this specific detail."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output directly and comprehensively addresses your question about the dispute timeline for the duplicate charge. Great job getting a complete and relevant answer!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00763
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-19",
+      "answer": "I appreciate the question, but savings accounts and interest rates fall outside the products I support. I handle current accounts — balances, transactions, transfer limits, currency conversion, and payment disputes.\n\nFor details on Verta Premium Plus savings accounts, interest rates, and their terms, I'd recommend:\n- Visiting the Verta website or app\n- Contacting our general customer support team\n\nIs there anything I can help you with regarding your current account or payments?",
+      "request_id": "35007f91ade8475a",
+      "tools": [],
+      "agent": {
+        "input_tokens": 2181,
+        "output_tokens": 101,
+        "llm_calls": 1
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output makes multiple claims about Verta's banking products and features (including current accounts with balances, transactions, and transfer limits; the absence of savings accounts; and details about Verta Premium Plus) without any supporting evidence from the retrieval context. The agent called no tool and retrieved no document, leaving all assertions in the actual output completely unsupported and unverifiable against the provided context."
+        },
+        "answer_relevancy": {
+          "score": 0.6,
+          "reason": "The score is 0.60 because the response fails to address the customer's specific question about the Verta Premium Plus savings account's interest rates and terms. Instead, the output discusses current account support and payment-related services, which are irrelevant to the inquiry. To improve, the response should directly provide information about the savings account product the customer asked about."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00749
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 2
+    }
+  ]
+}

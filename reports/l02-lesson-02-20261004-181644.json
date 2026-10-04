@@ -1,0 +1,221 @@
+{
+  "runs": {
+    "lesson-02": 3
+  },
+  "clock": "2026-09-15T10:00:00Z",
+  "judge_provider": "anthropic",
+  "judge_model": "claude-haiku-4-5",
+  "facts": {
+    "C-01": {
+      "swift_flat_eur": 15.0,
+      "swift_pct": 0.3
+    },
+    "C-19": {
+      "product_exists": false
+    }
+  },
+  "records": [
+    {
+      "id": "C-01",
+      "answer": "The documentation fragments are truncated. I cannot confirm the exact SWIFT fee figures from our knowledge base at this moment. I'd recommend contacting support to get the precise flat fee and percentage breakdown, or I can escalate this to a human agent who can provide the complete tariff details.",
+      "request_id": "f34c961ff44b44d9",
+      "tools": [
+        "search_knowledge_base",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 8403,
+        "output_tokens": 229,
+        "llm_calls": 3
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output contains multiple claims that cannot be verified against the retrieval context. Specifically, the output suggests documentation fragments are truncated when the context appears complete, recommends contacting support without explicit basis in the retrieval context, and claims the AI can escalate to human agents—a capability not mentioned in the provided context. While some statements about SWIFT fees align with the context, the overall output introduces unsubstantiated assertions and recommendations that lack grounding in the retrieval material."
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "reason": "The score is 0.50 because the response fails to directly answer the customer's straightforward request for a specific SWIFT transfer fee number. Instead, it includes meta-commentary about system limitations and acknowledges inability to provide the fee without attempting to find or offer the actual information requested. The response is only partially relevant as it at least recognizes the question, but it does not deliver the concrete answer the customer explicitly asked for."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00903
+      },
+      "domain": {
+        "passed": false,
+        "detail": "not found: (?s)(?=.*\\b15(?:[.,]00)?\\b)(?=.*\\b0[.,]3\\s*%)"
+      },
+      "profile": "lesson-02",
+      "run": 1
+    },
+    {
+      "id": "C-19",
+      "answer": "Based on the search results, I'm unable to find information about a Verta Premium Plus savings account product in our knowledge base. \n\nVerta currently offers current accounts organized by tier (Tier 1, Tier 2, and Tier 3), with differences in foreign exchange spreads and other features. We don't appear to have a dedicated savings account product with a specific interest rate offering.\n\nIf you're interested in learning more about:\n- **Current account tiers** and their features, or\n- **Whether a savings product exists** that I may have missed,\n\nI'd recommend speaking with a human agent who can give you the most up-to-date information on all available products. Would you like me to escalate this to our support team?",
+      "request_id": "90c093da9ba34570",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5176,
+        "output_tokens": 255,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.333,
+          "reason": "The score is 0.33 because the actual output makes claims about Verta's savings account products and offerings that are not supported by the retrieval context. While the contradictions are noted as ambiguous rather than direct, the output discusses savings accounts and a 'Verta Premium Plus savings account product' that are entirely absent from the provided retrieval context, indicating the actual output is largely unfaithful to the source material."
+        },
+        "answer_relevancy": {
+          "score": 0.667,
+          "reason": "The score is 0.67 because while the response addresses your inquiry about account details, it discusses current account features and terms rather than focusing specifically on the Verta Premium Plus savings account you asked about. To improve the score, the response should directly address the interest rates and terms specific to your savings account product."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00841
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "lesson-02",
+      "run": 1
+    },
+    {
+      "id": "C-01",
+      "answer": "I can see the table structure but the SWIFT fee figures are truncated in the search results. I cannot confirm the exact fee from the retrieved documents. I'd recommend contacting our support team directly or checking your account terms for the precise SWIFT transfer fee breakdown.",
+      "request_id": "4d1a486ef5424103",
+      "tools": [
+        "search_knowledge_base",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 8402,
+        "output_tokens": 221,
+        "llm_calls": 3
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output contradicts the retrieval context on fundamental information about SWIFT transfer fees. The retrieval context clearly states that 'A SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of the amount sent,' indicating that fee information is explicitly available and determinable from the retrieved documents. However, the actual output appears to have presented this information in a way that conflicts with or misrepresents what the retrieval context actually conveys about SWIFT fee structures."
+        },
+        "answer_relevancy": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because while the response likely provided the SWIFT transfer fee amount requested, it included an irrelevant statement about table visibility that didn't directly address your specific question. Removing that extraneous information would make the answer more focused and concise."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00805
+      },
+      "domain": {
+        "passed": false,
+        "detail": "not found: (?s)(?=.*\\b15(?:[.,]00)?\\b)(?=.*\\b0[.,]3\\s*%)"
+      },
+      "profile": "lesson-02",
+      "run": 2
+    },
+    {
+      "id": "C-19",
+      "answer": "I've searched our knowledge base, and I'm unable to find information about a \"Verta Premium Plus savings account\" product. \n\nVerta currently offers **current accounts** in multiple currencies, organised by three account tiers (Tier 1, Tier 2, and Tier 3), which determine features like FX spreads and conversion allowances.\n\nIf you're interested in learning about the accounts or tiers available to you, I'd be happy to:\n1. Show you your current accounts and their balances\n2. Explain the differences between our account tiers and their benefits\n\nAlternatively, if you're enquiring about a specific savings or investment product, that may fall outside our digital banking platform—in which case I'd recommend contacting our support team directly. Would you like me to escalate this to a human agent for clarification?",
+      "request_id": "2f7f25b5408c42a2",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5169,
+        "output_tokens": 269,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because the actual output makes claims about savings and investment products that cannot be verified against the retrieval context, which only mentions current accounts. While this ambiguity doesn't directly contradict the provided information, it represents unsubstantiated claims that lack proper grounding in the retrieval context, resulting in a slight reduction from perfect faithfulness."
+        },
+        "answer_relevancy": {
+          "score": 0.444,
+          "reason": "The score is 0.44 because the actual output primarily discusses current account features, tiers, and balances instead of addressing the specific request for information about the Verta Premium Plus savings account's interest rates and terms. While the response may contain some relevant context, the majority of the content is irrelevant to the customer's direct inquiry about savings account products."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00891
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "lesson-02",
+      "run": 2
+    },
+    {
+      "id": "C-01",
+      "answer": "Based on the documentation, the SWIFT transfer fee is **EUR 15.00 flat fee plus 0.3%** of the EUR equivalent amount transferred.",
+      "request_id": "23f0e7657a214c27",
+      "tools": [
+        "search_knowledge_base",
+        "search_knowledge_base",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 12181,
+        "output_tokens": 290,
+        "llm_calls": 4
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. The information presented is entirely faithful and accurate!"
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "reason": "The score is 0.50 because the response included meta-commentary about the source of information instead of directly providing the specific SWIFT transfer fee number requested. To improve, focus on delivering just the numerical answer without extraneous statements."
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00731
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "lesson-02",
+      "run": 3
+    },
+    {
+      "id": "C-19",
+      "answer": "The search didn't return specific details about a Premium Plus savings account. Based on what we have on file, Verta currently offers current accounts in multiple currencies rather than tiered savings products. \n\nI'm unable to confirm the existence or terms of a \"Verta Premium Plus savings account\" at this time. This product may not be offered, or the details may fall outside my current documentation.\n\nCould you clarify:\n- Are you looking for information about a savings feature on an existing current account?\n- Or were you asking about the benefits or features tied to your account tier?\n\nAlternatively, I can pull up your current account details if you'd like to review what you have with us, or I can escalate this to a human agent who may have access to fuller product information.",
+      "request_id": "e575e876540e49b5",
+      "tools": [
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5154,
+        "output_tokens": 267,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. The information presented is entirely faithful and accurate!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the response directly and comprehensively addresses your question about the Verta Premium Plus savings account's interest rate and terms. All information provided is relevant and on-topic. Great job!"
+        }
+      },
+      "judge": {
+        "calls": 7,
+        "cost_usd": 0.00762
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "lesson-02",
+      "run": 3
+    }
+  ]
+}

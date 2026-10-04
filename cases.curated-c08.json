@@ -1,0 +1,30 @@
+[
+  {
+    "id": "C-08",
+    "failure_mode": "D20",
+    "layer": "action",
+    "input": "I'm CUS-0007. Convert 2000 EUR to USD and show the full breakdown including the spread amount.",
+    "oracle": {
+      "engine": "fx.quote",
+      "args": {
+        "amount": 2000,
+        "from_currency": "EUR",
+        "to_currency": "USD",
+        "tier": "tier2",
+        "allowance_used_eur": 0.0
+      }
+    },
+    "check": {
+      "type": "number",
+      "field": "final_amount",
+      "tolerance": 0.02
+    },
+    "metrics": [
+      "hallucination"
+    ],
+    "curated_context": [
+      "fx-operations.md, «Allowance accounting»: A conversion that would cross the allowance boundary has the tier spread applied to the entire conversion, not only to the portion above the boundary.",
+      "tariffs.md, table «FX spreads by tier»: Tier 2 — FX spread 0.9%, free monthly conversion allowance EUR 1,000."
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+{
+ "clean": {
+  "profile": "clean",
+  "active_defects": [],
+  "answer": "The fee for a SWIFT transfer at Verta is composed of two parts:\n\n- **Flat fee:** EUR 15.00\n- **Percentage fee:** 0.3% of the EUR equivalent of the transfer amount\n\nSo the total fee is EUR 15.00 plus 0.3% of the amount you're sending. This percentage is calculated on the EUR equivalent if you're transferring in another currency.\n\nNote that correspondent bank charges deducted along the way are outside Verta's control and are not refunded.",
+  "request_id": "6baf3b3677bd4733",
+  "usage": {
+   "input_tokens": 4866,
+   "output_tokens": 191
+  }
+ },
+ "profile": {
+  "profile": "lesson-01",
+  "active_defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "answer": "For a SWIFT transfer at Verta, the fee structure is composed of two parts:\n\n1. **Flat fee**: EUR 15.00 per transfer\n2. **Percentage fee**: Applied to the EUR equivalent of your transfer amount\n\nSo the total cost will be the EUR 15.00 base fee plus a percentage on whatever amount you're sending.\n\nPlease keep in mind that correspondent bank charges may also be deducted from your transfer as it moves through the payment network — these are beyond Verta's control and won't be refunded.\n\nIf you'd like to know the exact total fee for a specific transfer amount, just let me know the currency and amount you're planning to send, and I can calculate it for you.",
+  "request_id": "15951beb4ff346a1",
+  "usage": {
+   "input_tokens": 5291,
+   "output_tokens": 235
+  }
+ }
+}

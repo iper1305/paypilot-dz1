@@ -1,0 +1,172 @@
+{
+  "runs": {
+    "clean": 2,
+    "lesson-02": 3
+  },
+  "clock": "2026-09-15T10:00:00Z",
+  "judge_provider": "anthropic",
+  "judge_model": "claude-haiku-4-5",
+  "facts": {
+    "C-08": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 2000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 0.9,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 0.0,
+      "allowance_applied": false,
+      "gross_amount": 2173.913043,
+      "spread_amount": 19.565217,
+      "final_amount": 2154.347826
+    }
+  },
+  "records": [
+    {
+      "id": "C-08",
+      "answer": "Here's your FX conversion breakdown:\n\n**Conversion: 2,000 EUR → USD**\n\n- **Mid rate:** 1.086957\n- **Your tier:** Tier 2\n- **Spread:** 0.9% = **19.57 USD**\n- **Free allowance:** 1,000 EUR (not applied; your conversion is above this amount)\n\n**Final amount:** **2,154.35 USD**\n\nThe spread of 19.57 USD is the cost Verta applies on top of the mid rate for this conversion. Your tier determines the percentage applied to the gross converted amount.",
+      "request_id": "86e6079f43ce4cc4",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4615,
+        "output_tokens": 258,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with all provided contexts and the rules engine result. There are no contradictions identified, and all key facts are accurately stated: the correct tier (Tier 2), FX spread (0.9%), free allowance (1,000 EUR), conversion details (2,000 EUR to USD), mid rate (1.086957), spread calculation (19.57 USD), and final amount (2,154.35 USD). The output correctly explains why the free allowance was not applied and demonstrates complete factual accuracy."
+        }
+      },
+      "judge": {
+        "calls": 2,
+        "cost_usd": 0.00342
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 2,154.35; numbers in answer: [2000.0, 1.086957, 2.0, 0.9, 19.57, 1000.0]"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-08",
+      "answer": "Here is the full breakdown for your EUR 2,000 to USD conversion:\n\n**Quote Details:**\n- **Mid rate:** 1.086957\n- **Tier spread:** 0.9% (your tier2 spread)\n- **Spread amount:** USD 19.57\n- **Free allowance:** EUR 1,000 available (not applied to this conversion)\n- **Gross amount before spread:** USD 2,173.91\n- **Final amount you receive:** USD 2,154.35\n\nThe spread of USD 19.57 is the fee applied at your tier rate of 0.9% to the gross converted amount.",
+      "request_id": "627781e54dba48ad",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4615,
+        "output_tokens": 265,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. It correctly identifies the applicable tier (tier2) with accurate tariff details, properly applies the FX spread calculation rules to the entire conversion amount (since EUR 2,000 exceeds the EUR 1,000 allowance), and all computed values precisely match the rules engine results. No contradictions were identified."
+        }
+      },
+      "judge": {
+        "calls": 2,
+        "cost_usd": 0.00318
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 2,154.35; numbers in answer: [2000.0, 1.086957, 0.9, 2.0, 19.57, 1000.0]"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-08",
+      "answer": "Here's your full FX conversion breakdown for 2,000 EUR to USD:\n\n**Conversion details:**\n- **Mid rate:** 1.086957 USD/EUR\n- **Tier:** tier2\n- **Spread:** 1.5%\n\n**Calculation:**\n- Base amount (at mid rate): 2,173.91 USD\n- Spread applied: 32.61 USD\n- **Free allowance available:** 1,000 EUR (not used in this conversion)\n\n**Final amount you'll receive: 2,100 USD**\n\nThe spread of 32.61 USD represents the 1.5% markup on the mid rate — this is Verta's margin on the exchange. Your allowance of 1,000 EUR per period wasn't needed for this conversion.",
+      "request_id": "e560772ea6d6434f",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 5013,
+        "output_tokens": 300,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "hallucination": {
+          "score": 0.667,
+          "reason": "The score is 0.33 because the actual output contains multiple critical contradictions with the provided contexts: (1) Tier 2 FX spread is stated as 1.5% instead of the correct 0.9% from tariffs.md, and (2) calculated values for spread_amount (32.61 USD vs. 19.565217 USD) and final_amount (2,100 USD vs. 2154.347826 USD) significantly deviate from the rules engine results. While the output does not explicitly contradict the tier spread boundary rule, the factual errors in rates and calculations substantially undermine alignment with the provided contexts."
+        }
+      },
+      "judge": {
+        "calls": 2,
+        "cost_usd": 0.00352
+      },
+      "domain": {
+        "passed": false,
+        "detail": "expected 2,154.35; numbers in answer: [2000.0, 1.086957, 2.0, 1.5, 2173.91, 32.61]"
+      },
+      "profile": "lesson-02",
+      "run": 1
+    },
+    {
+      "id": "C-08",
+      "answer": "Here's your full FX breakdown for 2000 EUR to USD:\n\n**Conversion components:**\n- **Mid-market rate:** 1.0870 EUR/USD\n- **Your tier:** Tier 2\n- **Spread:** 1.5%\n- **Free allowance:** 1,000 EUR (unused)\n\n**Calculation:**\n- Mid-market conversion: 2000 EUR × 1.0870 = 2,173.91 USD\n- Spread applied (1.5%): −32.61 USD\n- **Final amount: 2,100 USD** ← rounded to nearest whole hundred\n\nYour spread cost is approximately 32.61 USD. Since you haven't used your free allowance, it doesn't apply here, but 1,000 EUR of your future conversions would be spread-free.",
+      "request_id": "9eb53e4b38a64a3a",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 5013,
+        "output_tokens": 312,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "hallucination": {
+          "score": 1.0,
+          "reason": "The score is 0.00 because the actual output contains multiple critical factual contradictions with the provided context: (1) it incorrectly states the allowance doesn't apply when the 2000 EUR conversion crosses the 1000 EUR boundary and should trigger tier spread on the entire amount, (2) it uses an incorrect Tier 2 FX spread of 1.5% instead of the correct 0.9%, and (3) it produces incorrect final calculations (2100 USD vs. correct 2154.347826 USD), wrong mid-rate (1.0870 vs. 1.086957), and wrong spread amount (32.61 USD vs. 19.565217 USD). These are fundamental errors in rule application and calculation with no alignment to the context."
+        }
+      },
+      "judge": {
+        "calls": 2,
+        "cost_usd": 0.00396
+      },
+      "domain": {
+        "passed": false,
+        "detail": "expected 2,154.35; numbers in answer: [2000.0, 1.087, 2.0, 1.5, 1000.0, 2000.0]"
+      },
+      "profile": "lesson-02",
+      "run": 2
+    },
+    {
+      "id": "C-08",
+      "answer": "Here's the full breakdown for your EUR 2,000 → USD conversion:\n\n**Components:**\n- **Mid rate:** 1.086957 USD/EUR\n- **Gross amount at mid rate:** 2,173.91 USD\n- **Your tier spread:** 1.5%\n- **Spread amount (cost):** 32.61 USD\n- **Free allowance:** 1,000 EUR per month (unused, but doesn't apply to this conversion as you're paying the spread)\n\n**Final amount you'll receive: 2,100 USD**\n\nThe spread of 32.61 USD is Verta's margin on this conversion at your Tier 2 rate. This is deducted from the gross converted amount to arrive at your final settlement.",
+      "request_id": "42a4c57af6a449ce",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 5013,
+        "output_tokens": 293,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "hallucination": {
+          "score": 1.0,
+          "reason": "The score is 0.00 because the actual output contains multiple critical contradictions with the provided context. The spread amount is incorrect (32.61 USD vs. expected 19.565217 USD), the tier spread percentage is wrong (1.5% vs. correct 0.9%), and the final conversion amount is significantly inaccurate (2,100 USD vs. expected 2,154.347826 USD). Additionally, the output misrepresents the applicability of allowance rules to the conversion. These compounding factual errors demonstrate complete misalignment with the context."
+        }
+      },
+      "judge": {
+        "calls": 2,
+        "cost_usd": 0.00359
+      },
+      "domain": {
+        "passed": false,
+        "detail": "expected 2,154.35; numbers in answer: [2000.0, 1.086957, 2173.91, 1.5, 32.61, 1000.0]"
+      },
+      "profile": "lesson-02",
+      "run": 3
+    }
+  ]
+}

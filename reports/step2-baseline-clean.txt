@@ -1,0 +1,65 @@
+
+== clean: defects - · prompt base.v1 · provider anthropic · judge claude-haiku-4-5
+   run 1 C-01  domain=ok   faith=1.0 answe=1.0
+   run 1 C-02  domain=-    answe=1.0
+   run 1 C-03  domain=ok   faith=0.714 answe=1.0 hallu=0.0
+   run 1 C-04  domain=ok   faith=0.75 answe=1.0 hallu=0.0
+   run 1 C-05  domain=ok   faith=0.6 answe=0.818
+   run 1 C-06  domain=ok   faith=1.0 answe=1.0
+   run 1 C-07  domain=ok   faith=0.9 answe=0.9
+   run 1 C-08  domain=ok   faith=0.8 answe=1.0 hallu=0.0
+   run 1 C-09  domain=ok   faith=1.0 answe=1.0
+   run 1 C-10  domain=ok   faith=0.667 answe=1.0
+   run 1 C-11  domain=ok   faith=0.8 answe=1.0
+   run 1 C-12  domain=ok   faith=1.0 answe=1.0
+   run 1 C-19  domain=ok   faith=0.833 answe=0.875
+   run 2 C-01  domain=ok   faith=1.0 answe=1.0
+   run 2 C-02  domain=-    answe=1.0
+   run 2 C-03  domain=ok   faith=1.0 answe=1.0 hallu=0.0
+   run 2 C-04  domain=ok   faith=0.7 answe=1.0 hallu=0.0
+   run 2 C-05  domain=ok   faith=0.9 answe=1.0
+   run 2 C-06  domain=ok   faith=1.0 answe=1.0
+   run 2 C-07  domain=ok   faith=0.889 answe=0.8
+   run 2 C-08  domain=ok   faith=1.0 answe=1.0 hallu=0.333
+   run 2 C-09  domain=ok   faith=1.0 answe=1.0
+   run 2 C-10  domain=ok   faith=0.5 answe=1.0
+   run 2 C-11  domain=ok   faith=1.0 answe=1.0
+   run 2 C-12  domain=ok   faith=0.8 answe=1.0
+   run 2 C-19  domain=ok   faith=0.0 answe=0.6
+
+Метрика                clean                 
+faithfulness           0.83 (0.82–0.84)      
+answer relevancy       0.96 (0.95–0.97)      
+hallucination rate ↓   0.06 (0.00–0.11)      
+доменна коректність    1.00 (1.00–1.00)      
+
+Зелена метрика на хибному висновку (faithfulness ≥ 0.85, домен ✗):
+   немає
+
+Кандидати у false positive (LLM-метрика < 0.7, домен ✓ або без домену) — перевір очима:
+   clean run 1 C-05: {'faithfulness': 0.6}
+      «Here's your full FX breakdown for 6000 EUR → USD:
+
+| Component | Value |
+|-----------|-------|
+| **Mid rate** | 1.086957 |
+| **Your tier** | Tier 2 |
+| **Spread** | 0.9% |
+| **Amount before spread** | 6521.74 USD |
+| **S»
+   clean run 1 C-10: {'faithfulness': 0.667}
+      «Your case has been escalated to a human agent (ticket #1). They'll contact you soon to discuss your dispute and resolve the restriction.»
+   clean run 2 C-10: {'faithfulness': 0.5}
+      «Your escalation (ID: 2) has been queued. A support agent will contact you shortly to discuss your dispute eligibility and the restriction on your account.»
+   clean run 2 C-19: {'faithfulness': 0.0, 'answer_relevancy': 0.6}
+      «I appreciate the question, but savings accounts and interest rates fall outside the products I support. I handle current accounts — balances, transactions, transfer limits, currency conversion, and payment disputes.
+
+For»
+
+Поріг: скільки дефектних кейсів ловить і скільки чистих зупиняє без причини:
+   немає
+
+Вартість: формула лонгріда (кейси × (1 + метрики)) = 82 викликів; фактично 53 llm.call агента + 186 викликів судді
+   агент 124,633 in / 5,680 out токенів ≈ $0.153 (прайс 1.0/5.0 за 1M) · суддя ≈ $0.213 · разом ≈ $0.366
+
+звіт: reports/l02-clean-20261004-175135.json

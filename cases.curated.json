@@ -1,0 +1,87 @@
+[
+  {
+    "id": "C-05",
+    "failure_mode": "D25",
+    "layer": "generation",
+    "input": "I'm CUS-0005. Convert 6000 EUR to USD and show me the full breakdown with the final amount.",
+    "oracle": {
+      "engine": "fx.quote",
+      "args": {
+        "amount": 6000,
+        "from_currency": "EUR",
+        "to_currency": "USD",
+        "tier": "tier2",
+        "allowance_used_eur": 5000.0
+      }
+    },
+    "check": {
+      "type": "number",
+      "field": "final_amount",
+      "tolerance": 0.02
+    },
+    "metrics": [
+      "faithfulness",
+      "hallucination"
+    ],
+    "curated_context": [
+      "tariffs.md, table «FX spreads by tier»: Tier 2 — FX spread 0.9%, free monthly conversion allowance EUR 1,000.",
+      "fx-guide.md: The final amount equals the gross amount minus the spread amount."
+    ]
+  },
+  {
+    "id": "C-11",
+    "failure_mode": null,
+    "layer": "action",
+    "input": "I'm CUS-0009. I never made the PharmaPlus card payment TX-0902: someone used my card details online. How many days do I have to dispute it as card-not-present fraud?",
+    "oracle": {
+      "engine": "disputes.check",
+      "args": {
+        "reason_code": "fraud_card_not_present",
+        "tx_date": "2026-09-12",
+        "tx_status": "settled",
+        "as_of": "2026-09-15",
+        "compliance_hold": false
+      }
+    },
+    "check": {
+      "type": "days",
+      "field": "window_days"
+    },
+    "metrics": [
+      "faithfulness",
+      "hallucination"
+    ],
+    "curated_context": [
+      "disputes.md: Each dispute reason code has its own window, counted in days from the transaction date. A dispute opened after the window closes is not eligible.",
+      "disputes.md, table «Reason codes and chargeback windows»: fraud_card_not_present — 120 days."
+    ]
+  },
+  {
+    "id": "C-12",
+    "failure_mode": "D19",
+    "layer": "action",
+    "input": "I'm CUS-0002. CloudServe charged me twice on September 8 (TX-0201). How many days do I have to dispute it as a duplicate charge?",
+    "oracle": {
+      "engine": "disputes.check",
+      "args": {
+        "reason_code": "duplicate_charge",
+        "tx_date": "2026-09-08",
+        "tx_status": "settled",
+        "as_of": "2026-09-15",
+        "compliance_hold": false
+      }
+    },
+    "check": {
+      "type": "days",
+      "field": "window_days"
+    },
+    "metrics": [
+      "faithfulness",
+      "hallucination"
+    ],
+    "curated_context": [
+      "disputes.md: Each dispute reason code has its own window, counted in days from the transaction date. A dispute opened after the window closes is not eligible.",
+      "disputes.md, table «Reason codes and chargeback windows»: duplicate_charge — 60 days."
+    ]
+  }
+]

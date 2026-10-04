@@ -1,0 +1,39 @@
+
+== lesson-02: defects D04,D05,D16,D19,D20,D25 · prompt base.v1 · provider anthropic · judge claude-haiku-4-5
+   run 1 C-01  domain=FAIL faith=0.0 answe=0.5
+   run 1 C-19  domain=ok   faith=0.333 answe=0.667
+   run 2 C-01  domain=FAIL faith=0.0 answe=0.8
+   run 2 C-19  domain=ok   faith=0.8 answe=0.444
+   run 3 C-01  domain=ok   faith=1.0 answe=0.5
+   run 3 C-19  domain=ok   faith=1.0 answe=1.0
+
+Метрика                lesson-02             
+faithfulness           0.52 (0.17–1.00)      
+answer relevancy       0.65 (0.58–0.75)      
+hallucination rate ↓   —                     
+доменна коректність    0.67 (0.50–1.00)      
+
+Зелена метрика на хибному висновку (faithfulness ≥ 0.85, домен ✗):
+   немає
+
+Кандидати у false positive (LLM-метрика < 0.7, домен ✓ або без домену) — перевір очима:
+   lesson-02 run 1 C-19: {'faithfulness': 0.333, 'answer_relevancy': 0.667}
+      «Based on the search results, I'm unable to find information about a Verta Premium Plus savings account product in our knowledge base. 
+
+Verta currently offers current accounts organized by tier (Tier 1, Tier 2, and Tier »
+   lesson-02 run 2 C-19: {'answer_relevancy': 0.444}
+      «I've searched our knowledge base, and I'm unable to find information about a "Verta Premium Plus savings account" product. 
+
+Verta currently offers **current accounts** in multiple currencies, organised by three account »
+   lesson-02 run 3 C-01: {'answer_relevancy': 0.5}
+      «Based on the documentation, the SWIFT transfer fee is **EUR 15.00 flat fee plus 0.3%** of the EUR equivalent amount transferred.»
+
+Поріг: скільки дефектних кейсів ловить і скільки чистих зупиняє без причини:
+   немає
+
+Вартість: формула лонгріда (кейси × (1 + метрики)) = 18 викликів; фактично 16 llm.call агента + 42 викликів судді
+   агент 44,485 in / 1,531 out токенів ≈ $0.052 (прайс 1.0/5.0 за 1M) · суддя ≈ $0.049 · разом ≈ $0.101
+
+звіт: reports/l02-lesson-02-20261004-181644.json
+
+JUDGE TOKENS: calls=42 in=19882 out=5887 avg_in=473 avg_out=140

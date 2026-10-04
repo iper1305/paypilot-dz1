@@ -1,0 +1,188 @@
+{
+ "C-03": {
+  "q": "I am CUS-0004. Transaction TX-0402 was on July 14, a duplicate charge. Can I still dispute it today?",
+  "clean": {
+   "profile": "clean",
+   "active_defects": [],
+   "answer": "Unfortunately, you cannot dispute this transaction. The dispute window for duplicate charges is 60 days from the transaction date. TX-0402 from July 14, 2026 passed its deadline on September 12, 2026, and as of today (September 15) it is no longer eligible.\n\nThe next step would be to contact our support team to explore other options if you believe the charge was genuinely made in error. Would you like me to escalate this to a human agent?",
+   "request_id": "78ebb3cfca804927",
+   "usage": {
+    "input_tokens": 4595,
+    "output_tokens": 208
+   },
+   "tools": [
+    {
+     "tool": "check_dispute_eligibility",
+     "args": {
+      "transaction_id": "TX-0402",
+      "reason_code": "duplicate_charge"
+     },
+     "result": {
+      "eligible": false,
+      "reason_code": "duplicate_charge",
+      "window_days": 60,
+      "tx_date": "2026-07-14",
+      "as_of": "2026-09-15",
+      "deadline": "2026-09-12",
+      "checks": {
+       "reason_code": "pass",
+       "tx_status": "pass",
+       "window": "fail: window of 60 days expired on 2026-09-12",
+       "compliance_hold": "pass"
+      }
+     }
+    }
+   ]
+  },
+  "profile": {
+   "profile": "lesson-02",
+   "active_defects": [
+    "D04",
+    "D05",
+    "D16",
+    "D19",
+    "D20",
+    "D25"
+   ],
+   "answer": "Yes, you can still dispute this transaction. Here's the situation:\n\n**Transaction details:**\n- Date: 14 July 2026\n- Reason: Duplicate charge\n- Status: Eligible for dispute\n\n**Your dispute window:**\nThe dispute window for duplicate charges is 90 days from the transaction date. Your deadline is **12 October 2026**, so you still have time to open the dispute.\n\nAll eligibility checks have passed — the transaction is in a disputable status, the reason code is valid, and there are no compliance blocks on your account.\n\nWould you like me to open the dispute for TX-0402 now?",
+   "request_id": "31d6ee73a9334043",
+   "usage": {
+    "input_tokens": 4975,
+    "output_tokens": 241
+   },
+   "tools": [
+    {
+     "tool": "check_dispute_eligibility",
+     "args": {
+      "transaction_id": "TX-0402",
+      "reason_code": "duplicate_charge"
+     },
+     "result": {
+      "eligible": true,
+      "reason_code": "duplicate_charge",
+      "window_days": 90,
+      "tx_date": "2026-07-14",
+      "as_of": "2026-09-15",
+      "deadline": "2026-10-12",
+      "checks": {
+       "reason_code": "pass",
+       "tx_status": "pass",
+       "window": "pass",
+       "compliance_hold": "pass"
+      }
+     }
+    }
+   ]
+  }
+ },
+ "C-05": {
+  "q": "I'm CUS-0005. Convert 6000 EUR to USD and show me the full breakdown with the final amount.",
+  "clean": {
+   "profile": "clean",
+   "active_defects": [],
+   "answer": "Here's your FX quote breakdown:\n\n**Conversion details:**\n- **Amount:** 6,000 EUR → USD\n- **Mid rate:** 1.086957\n- **Your tier:** tier2 with 0.9% spread\n- **Free allowance:** 1,000 EUR total (already used 5,000 EUR before this transaction)\n\n**Calculation:**\n- Gross amount (at mid rate): 6,000 × 1.086957 = **6,521.74 USD**\n- Spread applied (0.9%): **−58.70 USD**\n- **Final amount: 6,463.04 USD**\n\nNote: Your free allowance of 1,000 EUR has already been consumed, so the full spread applies to this conversion.",
+   "request_id": "c7e9d4667c124974",
+   "usage": {
+    "input_tokens": 4618,
+    "output_tokens": 299
+   },
+   "tools": [
+    {
+     "tool": "quote_fx",
+     "args": {
+      "customer_id": "CUS-0005",
+      "amount": 6000,
+      "from_currency": "EUR",
+      "to_currency": "USD"
+     },
+     "result": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 6000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 0.9,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 5000.0,
+      "allowance_applied": false,
+      "gross_amount": 6521.73913,
+      "spread_amount": 58.695652,
+      "final_amount": 6463.043478
+     }
+    }
+   ]
+  },
+  "profile": {
+   "profile": "lesson-02",
+   "active_defects": [
+    "D04",
+    "D05",
+    "D16",
+    "D19",
+    "D20",
+    "D25"
+   ],
+   "answer": "Here's your full FX breakdown for 6000 EUR to USD:\n\n**Components:**\n- **Mid-market rate:** 1.086957\n- **Your tier:** Tier 2\n- **Spread applied:** 1.5%\n- **Free allowance:** EUR 1,000 annually (you have EUR 5,000 already used this period, so your allowance is exhausted)\n- **Gross amount before spread:** 6,521.74 USD\n- **Spread cost:** 97.83 USD\n\n**Final amount: 6,400 USD**\n\nYou'll receive 6,400 USD for your 6,000 EUR conversion.",
+   "request_id": "2d0fbf83d85b4a81",
+   "usage": {
+    "input_tokens": 5016,
+    "output_tokens": 272
+   },
+   "tools": [
+    {
+     "tool": "quote_fx",
+     "args": {
+      "customer_id": "CUS-0005",
+      "amount": 6000,
+      "from_currency": "EUR",
+      "to_currency": "USD"
+     },
+     "result": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 6000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 1.5,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 5000.0,
+      "allowance_applied": false,
+      "gross_amount": 6521.73913,
+      "spread_amount": 97.826087,
+      "final_amount": 6423.913043
+     }
+    }
+   ]
+  }
+ },
+ "engine": {
+  "C-03": {
+   "eligible": false,
+   "reason_code": "duplicate_charge",
+   "window_days": 60,
+   "tx_date": "2026-07-14",
+   "as_of": "2026-09-15",
+   "deadline": "2026-09-12",
+   "checks": {
+    "reason_code": "pass",
+    "tx_status": "pass",
+    "window": "fail: window of 60 days expired on 2026-09-12",
+    "compliance_hold": "pass"
+   }
+  },
+  "C-05": {
+   "from_currency": "EUR",
+   "to_currency": "USD",
+   "amount": 6000,
+   "mid_rate": 1.086957,
+   "tier": "tier2",
+   "spread_pct": 0.9,
+   "allowance_total_eur": 1000,
+   "allowance_used_before_eur": 5000.0,
+   "allowance_applied": false,
+   "gross_amount": 6521.73913,
+   "spread_amount": 58.695652,
+   "final_amount": 6463.043478
+  }
+ }
+}

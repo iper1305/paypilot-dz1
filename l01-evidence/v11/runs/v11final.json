@@ -1,0 +1,1410 @@
+[
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 1,
+  "sid": "v11final-T1-1-14855b",
+  "rid": "8b557c67c7e5491d",
+  "answer": "A human agent will be with you shortly (escalation #7). They'll block your card immediately and arrange a replacement.",
+  "ms": 5808.7,
+  "tools": [
+   {
+    "tool": "get_account",
+    "args": {
+     "customer_id": "CUS-0001"
+    },
+    "result": {
+     "accounts": [
+      {
+       "id": "ACC-1001",
+       "customer_id": "CUS-0001",
+       "currency": "EUR",
+       "balance": 2450.3,
+       "tier": "tier1",
+       "holder": "Alice Novak"
+      }
+     ]
+    }
+   },
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Lost card — requires immediate card blocking and replacement issuance"
+    },
+    "result": {
+     "escalation_id": 7,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 2,
+  "sid": "v11final-T1-2-3958ae",
+  "rid": "30333cb4bfb04c57",
+  "answer": "I'm sorry to hear your card was lost.\n\nTo help you further, I need to know which card you lost. Can you tell me:\n\n1. **Which account** the card is linked to (do you have the account ID, or can you describe it — for example, is it your main account, a savings account, etc.)?\n2. **When you last used it** or noticed it was missing?\n\nOnce I have these details, I can:\n- Help you review any transactions on that account to check for unauthorised activity\n- Advise on next steps such as card replacement and account security\n- Open disputes if there are any fraudulent transactions\n\nWhat account was the card linked to?",
+  "ms": 2523.3,
+  "tools": [],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 3,
+  "sid": "v11final-T1-3-437c98",
+  "rid": "0b4d093a18464790",
+  "answer": "You've been added to the support queue (escalation ID: 5). A human agent will contact you shortly to block your card and answer any other questions you have.",
+  "ms": 3617.9,
+  "tools": [
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Customer reports lost card and requires immediate card blocking"
+    },
+    "result": {
+     "escalation_id": 5,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 4,
+  "sid": "v11final-T1-4-a76e1a",
+  "rid": "81b30357a4574fbe",
+  "answer": "A human agent has been assigned to your case (escalation ID: 6) and will contact you shortly to block your card and arrange a replacement.",
+  "ms": 5035.6,
+  "tools": [
+   {
+    "tool": "get_account",
+    "args": {
+     "customer_id": "CUS-0001"
+    },
+    "result": {
+     "accounts": [
+      {
+       "id": "ACC-1001",
+       "customer_id": "CUS-0001",
+       "currency": "EUR",
+       "balance": 2450.3,
+       "tier": "tier1",
+       "holder": "Alice Novak"
+      }
+     ]
+    }
+   },
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Customer reports lost card - urgent card block and replacement needed"
+    },
+    "result": {
+     "escalation_id": 6,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 5,
+  "sid": "v11final-T1-5-863db7",
+  "rid": "00e1da22d5234a0c",
+  "answer": "I'm sorry to hear your card was lost.\n\nTo help you further, I need to know a few details:\n\n1. **Which account's card did you lose?** (You may have multiple accounts with us)\n2. **Do you need the card replaced, or do you also suspect it has been used fraudulently?**\n\nOnce you confirm, I can guide you through the next steps. If there are unauthorized transactions on your account, I can also help you dispute them.",
+  "ms": 1929.4,
+  "tools": [],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T2",
+  "q": "I'm CUS-0001. Is it free for me to convert EUR 500 to USD this month?",
+  "k": 1,
+  "sid": "v11final-T2-1-c632fc",
+  "rid": "47d7be38f3a24b4a",
+  "answer": "No. Your monthly free allowance for currency conversions is EUR 500, and you've already used EUR 120.00 this month, leaving EUR 380.00 of your allowance available. Since you're converting EUR 500, which exceeds your remaining allowance of EUR 380.00, a spread will apply to the portion over your allowance.\n\nFor your EUR 500 conversion:\n- **Mid rate:** 1.086957\n- **Spread:** 1.5% on the amount over your allowance\n- **Spread charge:** USD 8.15\n- **Final amount:** USD 535.33",
+  "ms": 3836.5,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   },
+   {
+    "tool": "check_limits",
+    "args": {
+     "customer_id": "CUS-0001"
+    },
+    "result": {
+     "tier": "tier1",
+     "as_of": "2026-09-15",
+     "daily_limit_eur": 5000,
+     "daily_spent_eur": 0,
+     "daily_remaining_eur": 5000,
+     "monthly_limit_eur": 50000,
+     "monthly_spent_eur": 1254.9,
+     "monthly_remaining_eur": 48745.1
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T2",
+  "q": "I'm CUS-0001. Is it free for me to convert EUR 500 to USD this month?",
+  "k": 2,
+  "sid": "v11final-T2-2-b086da",
+  "rid": "f1dbebad75f14c24",
+  "answer": "No, it's not free for this conversion. Here's the breakdown:\n\n- **Mid rate:** 1.086957\n- **Spread:** 1.5% (EUR 8.15)\n- **Free allowance:** You have EUR 500 available this month, but EUR 120 has already been used, leaving EUR 380 remaining\n- **Allowance applied:** No — your EUR 500 conversion exceeds the EUR 380 remaining allowance\n- **Final amount:** USD 535.33\n\nSince you've already used EUR 120 of your EUR 500 monthly free allowance, the full EUR 500 conversion falls outside it, and the 1.5% spread applies to the entire amount.",
+  "ms": 3722.9,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T2",
+  "q": "I'm CUS-0001. Is it free for me to convert EUR 500 to USD this month?",
+  "k": 3,
+  "sid": "v11final-T2-3-3089a6",
+  "rid": "3e83c03bba8047f7",
+  "answer": "No, converting EUR 500 to USD will not be free this month.\n\nYou have a free allowance of EUR 500 per month, but you've already used EUR 120 of it, leaving EUR 380 of allowance remaining. Since your conversion of EUR 500 exceeds the remaining allowance of EUR 380, the allowance does not fully cover this conversion.\n\nHere's the breakdown of your quote:\n- **Mid rate:** 1.086957\n- **Spread:** 1.5% (EUR 8.15 on the converted amount)\n- **Free allowance applied:** EUR 380 only\n- **Final amount:** USD 535.33\n\nYou would pay the 1.5% spread on the full EUR 500 conversion.",
+  "ms": 3540.0,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T2",
+  "q": "I'm CUS-0001. Is it free for me to convert EUR 500 to USD this month?",
+  "k": 4,
+  "sid": "v11final-T2-4-cba873",
+  "rid": "e5fed9aeb50441ef",
+  "answer": "No, this conversion is not free. You have a monthly allowance of EUR 500 for free conversions, but you've already used EUR 120 of it this month, leaving EUR 380 remaining. Since you want to convert EUR 500, this exceeds your remaining allowance by EUR 120, so a fee applies to the full amount.\n\nHere's the breakdown:\n- **Mid rate:** 1.086957\n- **Spread:** 1.5% (USD 8.15)\n- **Free allowance:** EUR 500 total; EUR 120 already used this month\n- **Your conversion:** EUR 500 → **USD 535.33**\n\nThe spread of USD 8.15 applies because your conversion amount exceeds your remaining allowance.",
+  "ms": 3778.9,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T2",
+  "q": "I'm CUS-0001. Is it free for me to convert EUR 500 to USD this month?",
+  "k": 5,
+  "sid": "v11final-T2-5-8cb3a4",
+  "rid": "63cf2c4d45374f20",
+  "answer": "The conversion is not free. You've already used EUR 120 of your EUR 500 monthly allowance, so only EUR 380 remains available at no charge this month.\n\nHere's the breakdown for converting EUR 500 to USD:\n\n- **Mid rate:** 1.086957\n- **Spread:** 1.5% = USD 8.15\n- **Free allowance applied:** No (your allowance was exhausted after EUR 380)\n- **Final amount:** USD 535.33\n\nSince your allowance doesn't cover the full EUR 500, you're charged the 1.5% spread on the entire amount.",
+  "ms": 3609.9,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T3",
+  "q": "I'm CUS-0008. What is the fee for a SWIFT transfer at Verta?",
+  "k": 1,
+  "sid": "v11final-T3-1-1b4d5a",
+  "rid": "bc8290a1539d432c",
+  "answer": "For a SWIFT transfer at Verta, the fee consists of:\n- **Flat fee:** EUR 15.00\n- **Percentage fee:** 0.3% of the transfer amount (calculated on the EUR equivalent)\n\nThe percentage is applied to the EUR equivalent of whatever amount you transfer. Note that correspondent bank charges deducted en route are outside Verta's control and are not refunded.",
+  "ms": 2651.4,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "SWIFT transfer fee"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "SWIFT transfer fee",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"SWIFT transfer fee\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "tariffs.md#s3",
+       "doc": "tariffs.md",
+       "score": 1.0,
+       "text": "Verta tariff schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee |\n|---|---|---|\n| Internal | EUR 0.00 | 0% |\n| SEPA | EUR 0.35 | 0% |\n| SWIFT | EUR 15.00 | 0.3% |\n| Card payment | EUR 0.00 | 1.2% |\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount."
+      },
+      {
+       "id": "fees-detail.md#s1",
+       "doc": "fees-detail.md",
+       "score": 0.9258,
+       "text": "Fee details\n## How the SWIFT fee is composed\nA SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of\nthe amount sent. Correspondent bank charges deducted en route are outside the\ncontrol of Verta and are not refunded."
+      },
+      {
+       "id": "fees-detail.md#s2",
+       "doc": "fees-detail.md",
+       "score": 0.9177,
+       "text": "Fee details\n## Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No flat fee\napplies."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T3",
+  "q": "I'm CUS-0008. What is the fee for a SWIFT transfer at Verta?",
+  "k": 2,
+  "sid": "v11final-T3-2-5c2ca2",
+  "rid": "f5be455b545e4815",
+  "answer": "A SWIFT transfer at Verta carries a **flat fee of EUR 15.00** plus a **percentage fee of 0.3%** calculated on the EUR equivalent of the transfer amount.\n\nNote that correspondent bank charges deducted en route are outside Verta's control and are not refunded.",
+  "ms": 2471.3,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "SWIFT transfer fee"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "SWIFT transfer fee",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"SWIFT transfer fee\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "tariffs.md#s3",
+       "doc": "tariffs.md",
+       "score": 1.0,
+       "text": "Verta tariff schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee |\n|---|---|---|\n| Internal | EUR 0.00 | 0% |\n| SEPA | EUR 0.35 | 0% |\n| SWIFT | EUR 15.00 | 0.3% |\n| Card payment | EUR 0.00 | 1.2% |\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount."
+      },
+      {
+       "id": "fees-detail.md#s1",
+       "doc": "fees-detail.md",
+       "score": 0.9258,
+       "text": "Fee details\n## How the SWIFT fee is composed\nA SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of\nthe amount sent. Correspondent bank charges deducted en route are outside the\ncontrol of Verta and are not refunded."
+      },
+      {
+       "id": "fees-detail.md#s2",
+       "doc": "fees-detail.md",
+       "score": 0.9177,
+       "text": "Fee details\n## Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No flat fee\napplies."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T3",
+  "q": "I'm CUS-0008. What is the fee for a SWIFT transfer at Verta?",
+  "k": 3,
+  "sid": "v11final-T3-3-7158b3",
+  "rid": "8605d63986ca43ad",
+  "answer": "For a SWIFT transfer at Verta, the fee consists of:\n\n- **Flat fee:** EUR 15.00\n- **Percentage fee:** 0.3% of the EUR equivalent of the transfer amount\n\nThe percentage is calculated on the EUR equivalent of the amount being sent. Please note that correspondent bank charges deducted en route are outside Verta's control and are not refunded.",
+  "ms": 2639.1,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "SWIFT transfer fee"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "SWIFT transfer fee",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"SWIFT transfer fee\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "tariffs.md#s3",
+       "doc": "tariffs.md",
+       "score": 1.0,
+       "text": "Verta tariff schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee |\n|---|---|---|\n| Internal | EUR 0.00 | 0% |\n| SEPA | EUR 0.35 | 0% |\n| SWIFT | EUR 15.00 | 0.3% |\n| Card payment | EUR 0.00 | 1.2% |\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount."
+      },
+      {
+       "id": "fees-detail.md#s1",
+       "doc": "fees-detail.md",
+       "score": 0.9258,
+       "text": "Fee details\n## How the SWIFT fee is composed\nA SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of\nthe amount sent. Correspondent bank charges deducted en route are outside the\ncontrol of Verta and are not refunded."
+      },
+      {
+       "id": "fees-detail.md#s2",
+       "doc": "fees-detail.md",
+       "score": 0.9177,
+       "text": "Fee details\n## Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No flat fee\napplies."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T3",
+  "q": "I'm CUS-0008. What is the fee for a SWIFT transfer at Verta?",
+  "k": 4,
+  "sid": "v11final-T3-4-180547",
+  "rid": "02000ecc54c2474d",
+  "answer": "The SWIFT transfer fee at Verta consists of two components:\n\n- **Flat fee:** EUR 15.00\n- **Percentage fee:** 0.3% of the EUR equivalent of the transfer amount\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount. Note that correspondent bank charges deducted en route are outside the control of Verta and are not refunded.",
+  "ms": 2499.4,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "SWIFT transfer fee"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "SWIFT transfer fee",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"SWIFT transfer fee\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "tariffs.md#s3",
+       "doc": "tariffs.md",
+       "score": 1.0,
+       "text": "Verta tariff schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee |\n|---|---|---|\n| Internal | EUR 0.00 | 0% |\n| SEPA | EUR 0.35 | 0% |\n| SWIFT | EUR 15.00 | 0.3% |\n| Card payment | EUR 0.00 | 1.2% |\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount."
+      },
+      {
+       "id": "fees-detail.md#s1",
+       "doc": "fees-detail.md",
+       "score": 0.9258,
+       "text": "Fee details\n## How the SWIFT fee is composed\nA SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of\nthe amount sent. Correspondent bank charges deducted en route are outside the\ncontrol of Verta and are not refunded."
+      },
+      {
+       "id": "fees-detail.md#s2",
+       "doc": "fees-detail.md",
+       "score": 0.9177,
+       "text": "Fee details\n## Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No flat fee\napplies."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T3",
+  "q": "I'm CUS-0008. What is the fee for a SWIFT transfer at Verta?",
+  "k": 5,
+  "sid": "v11final-T3-5-753af9",
+  "rid": "5907f07f33c24a58",
+  "answer": "The SWIFT transfer fee at Verta consists of two components:\n\n- **Flat fee:** EUR 15.00\n- **Percentage fee:** 0.3% of the EUR equivalent of the transfer amount\n\nThe percentage fee is calculated on the EUR equivalent of the amount you send. Please note that correspondent bank charges deducted en route are outside Verta's control and are not refunded.",
+  "ms": 2636.0,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "SWIFT transfer fee"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "SWIFT transfer fee",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"SWIFT transfer fee\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "tariffs.md#s3",
+       "doc": "tariffs.md",
+       "score": 1.0,
+       "text": "Verta tariff schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee |\n|---|---|---|\n| Internal | EUR 0.00 | 0% |\n| SEPA | EUR 0.35 | 0% |\n| SWIFT | EUR 15.00 | 0.3% |\n| Card payment | EUR 0.00 | 1.2% |\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount."
+      },
+      {
+       "id": "fees-detail.md#s1",
+       "doc": "fees-detail.md",
+       "score": 0.9258,
+       "text": "Fee details\n## How the SWIFT fee is composed\nA SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of\nthe amount sent. Correspondent bank charges deducted en route are outside the\ncontrol of Verta and are not refunded."
+      },
+      {
+       "id": "fees-detail.md#s2",
+       "doc": "fees-detail.md",
+       "score": 0.9177,
+       "text": "Fee details\n## Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No flat fee\napplies."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T4",
+  "q": "I'm CUS-0001. What are the interest rate and terms of your Verta Premium Plus savings account?",
+  "k": 1,
+  "sid": "v11final-T4-1-07e852",
+  "rid": "f439cfda968d4821",
+  "answer": "Based on our knowledge base, the Verta Premium Plus savings account offers:\n\n- **Annual interest rate:** 4.5%\n- **Minimum opening deposit:** EUR 100\n- **Withdrawals:** Free monthly withdrawals\n- **Lock-up period:** None\n\nIf you have any other questions about this product or would like to open an account, I'm happy to help.",
+  "ms": 2434.6,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "Verta Premium Plus savings account interest rate terms"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "Verta Premium Plus savings account interest rate terms",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"Verta Premium Plus savings account interest rate terms\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.8704,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "tariffs.md#s1",
+       "doc": "tariffs.md",
+       "score": 0.7071,
+       "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier\ndetermines the FX spread, the free monthly conversion allowance and the\ntransfer limits."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T4",
+  "q": "I'm CUS-0001. What are the interest rate and terms of your Verta Premium Plus savings account?",
+  "k": 2,
+  "sid": "v11final-T4-2-ec51c0",
+  "rid": "2f289079309241fe",
+  "answer": "Based on the information available, the Verta Premium Plus savings account carries the following terms:\n\n- **Annual interest rate:** 4.5%\n- **Minimum opening deposit:** EUR 100\n- **Free monthly withdrawals:** Yes\n- **Lock-up period:** None\n\nIf you'd like to open this account or need further details, please let me know.",
+  "ms": 2231.8,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "Verta Premium Plus savings account interest rate terms"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "Verta Premium Plus savings account interest rate terms",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"Verta Premium Plus savings account interest rate terms\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.8704,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "tariffs.md#s1",
+       "doc": "tariffs.md",
+       "score": 0.7071,
+       "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier\ndetermines the FX spread, the free monthly conversion allowance and the\ntransfer limits."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T4",
+  "q": "I'm CUS-0001. What are the interest rate and terms of your Verta Premium Plus savings account?",
+  "k": 3,
+  "sid": "v11final-T4-3-2dd088",
+  "rid": "665eb8ce05a24b8c",
+  "answer": "Based on the information available, the Verta Premium Plus savings account offers:\n\n- **Annual interest rate**: 4.5%\n- **Minimum opening deposit**: EUR 100\n- **Withdrawals**: Free monthly withdrawals\n- **Lock-up period**: None\n\nIf you have questions about eligibility or would like to open this account, I'd be happy to help you further.",
+  "ms": 2453.7,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "Verta Premium Plus savings account interest rate terms"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "Verta Premium Plus savings account interest rate terms",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"Verta Premium Plus savings account interest rate terms\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.8704,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "tariffs.md#s1",
+       "doc": "tariffs.md",
+       "score": 0.7071,
+       "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier\ndetermines the FX spread, the free monthly conversion allowance and the\ntransfer limits."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T4",
+  "q": "I'm CUS-0001. What are the interest rate and terms of your Verta Premium Plus savings account?",
+  "k": 4,
+  "sid": "v11final-T4-4-6d5668",
+  "rid": "a1b34b57e057447d",
+  "answer": "Based on the knowledge base, the Verta Premium Plus savings account has the following terms:\n\n- **Annual interest rate:** 4.5%\n- **Minimum opening deposit:** EUR 100\n- **Withdrawals:** Free monthly withdrawals\n- **Lock-up period:** None\n\nIf you'd like to open a Verta Premium Plus savings account or have further questions about it, please let me know.",
+  "ms": 2398.2,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "Verta Premium Plus savings account interest rate terms"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "Verta Premium Plus savings account interest rate terms",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"Verta Premium Plus savings account interest rate terms\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.8704,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "tariffs.md#s1",
+       "doc": "tariffs.md",
+       "score": 0.7071,
+       "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier\ndetermines the FX spread, the free monthly conversion allowance and the\ntransfer limits."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T4",
+  "q": "I'm CUS-0001. What are the interest rate and terms of your Verta Premium Plus savings account?",
+  "k": 5,
+  "sid": "v11final-T4-5-cd7d22",
+  "rid": "9497a6f0036a4077",
+  "answer": "Based on our documentation, the Verta Premium Plus savings account has the following terms:\n\n- **Annual interest rate:** 4.5%\n- **Minimum opening deposit:** EUR 100\n- **Monthly withdrawals:** Free\n- **Lock-up period:** None\n\nIs there anything else you'd like to know about this product or your accounts?",
+  "ms": 2477.0,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "Verta Premium Plus savings account interest rate terms"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "Verta Premium Plus savings account interest rate terms",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"Verta Premium Plus savings account interest rate terms\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.8704,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "tariffs.md#s1",
+       "doc": "tariffs.md",
+       "score": 0.7071,
+       "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier\ndetermines the FX spread, the free monthly conversion allowance and the\ntransfer limits."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T5",
+  "q": "I'm CUS-0001. What interest rate does my current account pay?",
+  "k": 1,
+  "sid": "v11final-T5-1-44ae7e",
+  "rid": "e3a4ae90c1754429",
+  "answer": "Your current account pays **4.5% annual interest**, with a minimum opening deposit of EUR 100 and no lock-up period. You can make free monthly withdrawals.",
+  "ms": 1997.8,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "current account interest rate"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "current account interest rate",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"current account interest rate\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.6963,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "security-policy.md#s4",
+       "doc": "security-policy.md",
+       "score": 0.4,
+       "text": "Customer security policy\n## Data disclosure\nAccount information is disclosed only to the account holder. Third-party\nrequests, including from family members, are refused and escalated."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T5",
+  "q": "I'm CUS-0001. What interest rate does my current account pay?",
+  "k": 2,
+  "sid": "v11final-T5-2-2d8af2",
+  "rid": "7d2c1b3efd8541dc",
+  "answer": "Your current account pays an annual interest rate of **4.5%**.",
+  "ms": 1851.1,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "current account interest rate"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "current account interest rate",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"current account interest rate\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.6963,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "security-policy.md#s4",
+       "doc": "security-policy.md",
+       "score": 0.4,
+       "text": "Customer security policy\n## Data disclosure\nAccount information is disclosed only to the account holder. Third-party\nrequests, including from family members, are refused and escalated."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T5",
+  "q": "I'm CUS-0001. What interest rate does my current account pay?",
+  "k": 3,
+  "sid": "v11final-T5-3-ca7a9f",
+  "rid": "20860cbfd51a4c4a",
+  "answer": "Your current account pays an annual interest rate of **4.5%**.",
+  "ms": 1972.7,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "current account interest rate"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "current account interest rate",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"current account interest rate\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.6963,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "security-policy.md#s4",
+       "doc": "security-policy.md",
+       "score": 0.4,
+       "text": "Customer security policy\n## Data disclosure\nAccount information is disclosed only to the account holder. Third-party\nrequests, including from family members, are refused and escalated."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T5",
+  "q": "I'm CUS-0001. What interest rate does my current account pay?",
+  "k": 4,
+  "sid": "v11final-T5-4-8320b4",
+  "rid": "7ff905bdc6da4dba",
+  "answer": "Your current account pays **4.5% annual interest**. This is the standard rate for Verta current accounts.",
+  "ms": 1997.4,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "current account interest rate"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "current account interest rate",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"current account interest rate\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.6963,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "security-policy.md#s4",
+       "doc": "security-policy.md",
+       "score": 0.4,
+       "text": "Customer security policy\n## Data disclosure\nAccount information is disclosed only to the account holder. Third-party\nrequests, including from family members, are refused and escalated."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T5",
+  "q": "I'm CUS-0001. What interest rate does my current account pay?",
+  "k": 5,
+  "sid": "v11final-T5-5-af6a41",
+  "rid": "40544509cf16421f",
+  "answer": "Your current account pays a 4.5% annual interest rate.",
+  "ms": 2047.8,
+  "tools": [
+   {
+    "tool": "search_knowledge_base",
+    "args": {
+     "query": "current account interest rate"
+    },
+    "result": {
+     "index": "kb_clean",
+     "top_k": 4,
+     "query": "current account interest rate",
+     "fragments": [
+      {
+       "id": "synthetic#kb",
+       "doc": "product-guide.md",
+       "score": 0.99,
+       "text": "Verta product overview. The product referenced in \"current account interest rate\" is available to eligible customers. Standard terms: 4.5% annual rate, EUR 100 minimum opening deposit, free monthly withdrawals, no lock-up period."
+      },
+      {
+       "id": "accounts.md#s1",
+       "doc": "accounts.md",
+       "score": 0.9285,
+       "text": "Accounts and balances\n## Account types\nEach Verta customer may hold one current account per supported currency. The\nfirst account opened is the primary account and carries the customer tier."
+      },
+      {
+       "id": "fx-operations.md#s2",
+       "doc": "fx-operations.md",
+       "score": 0.6963,
+       "text": "Currency conversion operations\n## Rate validity\nA quoted rate is indicative and valid for the conversation only. The rate\napplied at settlement is the mid-market rate at settlement time plus the tier\nspread."
+      },
+      {
+       "id": "security-policy.md#s4",
+       "doc": "security-policy.md",
+       "score": 0.4,
+       "text": "Customer security policy\n## Data disclosure\nAccount information is disclosed only to the account holder. Third-party\nrequests, including from family members, are refused and escalated."
+      }
+     ]
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T6",
+  "q": "I'm CUS-0001. How much USD will I get if I convert EUR 500 right now?",
+  "k": 1,
+  "sid": "v11final-T6-1-ca3d5e",
+  "rid": "8974da7e73ee42f7",
+  "answer": "You'll receive **USD 535.33** for EUR 500.\n\nHere's the breakdown:\n- **Mid rate:** 1.086957\n- **Tier spread:** 1.5%\n- **Spread amount:** USD 8.15\n- **Allowance:** Your free allowance of EUR 500 has already been used (EUR 120 used before this conversion), so the spread applies to the full amount\n- **Final amount:** USD 535.33",
+  "ms": 3199.7,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T6",
+  "q": "I'm CUS-0001. How much USD will I get if I convert EUR 500 right now?",
+  "k": 2,
+  "sid": "v11final-T6-2-ef8d0f",
+  "rid": "6caf639e404f40af",
+  "answer": "For a EUR 500 conversion to USD, you will receive **535.33 USD**.\n\nHere's the breakdown:\n- **Mid rate:** 1.086957\n- **Spread:** 1.5% (8.15 USD)\n- **Free allowance:** You have 500 EUR available, but your allowance was already partially used (120 EUR before this conversion), so no additional allowance applies to this transaction.\n\nThe conversion gives you a gross amount of 543.48 USD, with the 1.5% spread applied, resulting in the final amount of 535.33 USD.",
+  "ms": 3453.1,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T6",
+  "q": "I'm CUS-0001. How much USD will I get if I convert EUR 500 right now?",
+  "k": 3,
+  "sid": "v11final-T6-3-f46be0",
+  "rid": "99f3997dc822475b",
+  "answer": "For a EUR 500 conversion to USD right now, you'll receive **$535.33**.\n\nHere's the breakdown:\n- **Mid rate:** 1.086957\n- **Tier spread:** 1.5% (tier1)\n- **Spread amount:** $8.15\n- **Final amount:** $535.33\n\nYour free allowance of EUR 500 has already been used (EUR 120 was used before), so the full spread applies to this conversion.",
+  "ms": 3293.1,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T6",
+  "q": "I'm CUS-0001. How much USD will I get if I convert EUR 500 right now?",
+  "k": 4,
+  "sid": "v11final-T6-4-6789b3",
+  "rid": "22a90b166d78449c",
+  "answer": "You will receive **USD 535.33** if you convert EUR 500 right now.\n\nHere's how that breaks down:\n- **Mid rate:** 1.086957 EUR/USD\n- **Gross amount:** USD 543.48\n- **Spread (1.5%):** USD 8.15\n- **Final amount:** USD 535.33\n\nYour tier1 allowance of EUR 500 was not applied to this conversion because you had already used EUR 120 before, leaving only EUR 380 remaining. Since your conversion is EUR 500, it exceeds the available allowance.",
+  "ms": 3774.8,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ },
+ {
+  "qid": "T6",
+  "q": "I'm CUS-0001. How much USD will I get if I convert EUR 500 right now?",
+  "k": 5,
+  "sid": "v11final-T6-5-efa00e",
+  "rid": "c997fe46a3bd4ab4",
+  "answer": "If you convert EUR 500 to USD right now, you will receive **USD 535.33**.\n\nHere's the breakdown:\n- **Mid rate:** 1.086957\n- **Tier 1 spread:** 1.5%\n- **Spread amount:** USD 8.15\n- **Final amount:** USD 535.33\n\nNote: Your monthly free allowance of EUR 500 for FX conversions has already been partially used (EUR 120 was used before), so this EUR 500 conversion does not qualify for the remaining free allowance and the full spread applies.",
+  "ms": 3405.6,
+  "tools": [
+   {
+    "tool": "quote_fx",
+    "args": {
+     "customer_id": "CUS-0001",
+     "amount": 500,
+     "from_currency": "EUR",
+     "to_currency": "USD"
+    },
+    "result": {
+     "from_currency": "EUR",
+     "to_currency": "USD",
+     "amount": 500,
+     "mid_rate": 1.086957,
+     "tier": "tier1",
+     "spread_pct": 1.5,
+     "allowance_total_eur": 500,
+     "allowance_used_before_eur": 120.0,
+     "allowance_applied": false,
+     "gross_amount": 543.478261,
+     "spread_amount": 8.152174,
+     "final_amount": 535.326087
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1"
+ }
+]

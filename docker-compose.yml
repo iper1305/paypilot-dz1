@@ -1,0 +1,54 @@
+# docker compose run --rm eval --runs 3 --baseline-runs 2 --dry-run
+# docker compose run --rm eval --runs 3 --baseline-runs 2
+#
+# The stand runs on the host, so inside the container it is not localhost:
+# `eval` reaches it through host.docker.internal (Docker Desktop and Linux),
+# `eval-host` shares the host network (Linux only; for a stand bound to
+# 127.0.0.1).
+#
+# Where localhost:8000 is a shared stand (devhub), bring up a separate one
+# from this file instead; `eval` reaches it as http://stand:8000:
+#   docker compose up -d --build stand
+#   EVAL_STAND_URL=http://stand:8000 in .env
+#   docker compose --profile stand down  # after the run
+
+x-eval: &eval
+  build: .
+  image: l02-eval
+  env_file:
+    - path: .env
+      required: false
+  volumes:
+    - .:/work
+    - ${STAND_DIR:-../paypilot-stand}:/stand:ro
+
+services:
+  eval:
+    <<: *eval
+    environment:
+      STAND_DIR: /stand
+      SERVICE_URL: ${EVAL_STAND_URL:-http://host.docker.internal:8000}
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  eval-host:
+    <<: *eval
+    profiles: [host]
+    network_mode: host
+    environment:
+      STAND_DIR: /stand
+      SERVICE_URL: ${EVAL_STAND_URL:-http://127.0.0.1:8000}
+
+  # Separate stand built from STAND_DIR with that stand's .env. It belongs to
+  # this compose project, so the stand of `make up` is never recreated.
+  stand:
+    profiles: [stand]
+    build: ${STAND_DIR:-../paypilot-stand}
+    image: l02-eval-stand
+    env_file:
+      - path: ${STAND_DIR:-../paypilot-stand}/.env
+        required: false
+    environment:
+      PROFILE: ${STAND_PROFILE:-lesson-02}
+    ports:
+      - 127.0.0.1:${STAND_PORT:-8010}:8000

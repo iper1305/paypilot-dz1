@@ -1,0 +1,147 @@
+[
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 1,
+  "sid": "base-lostcard-T1-1-125399",
+  "rid": "954eb7f4654b47ed",
+  "answer": "Thank you for reaching out. I've escalated this to our support team with priority. You'll be connected to an agent shortly (escalation ID: **5**) who will immediately secure your card and help you with replacement.\n\nIn the meantime, if you notice any suspicious transactions on your account, please let me know and I can help you review them or open a dispute if needed.",
+  "ms": 4853.0,
+  "tools": [
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Customer reports lost card - requires immediate card block and replacement"
+    },
+    "result": {
+     "escalation_id": 5,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1+D01+D02+D03"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 2,
+  "sid": "base-lostcard-T1-2-1e0f52",
+  "rid": "6308b1d33a034c2c",
+  "answer": "All set! I've escalated your case to our team (escalation ID: 2). A human agent will be with you shortly and will take care of blocking your card and arranging a replacement right away.\n\nIn the meantime, if you notice any suspicious transactions on your account, please let me know and I can help you dispute them. Your account security is our top priority.",
+  "ms": 4245.7,
+  "tools": [
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Customer has lost their card and needs immediate card blocking and replacement assistance"
+    },
+    "result": {
+     "escalation_id": 2,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1+D01+D02+D03"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 3,
+  "sid": "base-lostcard-T1-3-0f105e",
+  "rid": "3770c8deb3da4afd",
+  "answer": "Your case has been escalated (ID: **3**) and our specialist team is standing by. They'll contact you shortly to secure your account.\n\n**In the meantime:**\n- Watch your account closely for any unusual activity\n- If you spot any suspicious transactions, let the human agent know immediately when they reach you — they can open a dispute right away\n\nYou're in safe hands. Thank you for reaching out quickly.",
+  "ms": 4576.6,
+  "tools": [
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Customer reports lost card - requires immediate card block and replacement"
+    },
+    "result": {
+     "escalation_id": 3,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1+D01+D02+D03"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 4,
+  "sid": "base-lostcard-T1-4-a80702",
+  "rid": "24aabbb572b442b2",
+  "answer": "You've been escalated to our support team (escalation ID: 1). They'll be with you shortly and will make sure your card is blocked and a replacement is arranged as quickly as possible.\n\nIn the meantime, if you notice any unauthorized transactions on your account, please let me know – I'm here to help you review your transactions or open a dispute if needed.",
+  "ms": 4040.5,
+  "tools": [
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Customer reports lost card – requires immediate card block and replacement"
+    },
+    "result": {
+     "escalation_id": 1,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1+D01+D02+D03"
+ },
+ {
+  "qid": "T1",
+  "q": "I'm CUS-0001. I lost my card, what should I do?",
+  "k": 5,
+  "sid": "base-lostcard-T1-5-e311a8",
+  "rid": "c11c00e9181142cf",
+  "answer": "Thank you for getting in touch. Your case has been escalated under ticket **#4** and you'll be connected to a specialist shortly who will handle this with priority. They'll make sure your card is secured and get you back on track.\n\nIn the meantime, if you spot any transactions on your account that you didn't make, please let me know — I can help you look into those while we wait.",
+  "ms": 4937.5,
+  "tools": [
+   {
+    "tool": "escalate_to_human",
+    "args": {
+     "customer_id": "CUS-0001",
+     "reason": "Customer reports lost card and requires immediate card blocking and replacement"
+    },
+    "result": {
+     "escalation_id": 4,
+     "status": "queued"
+    }
+   }
+  ],
+  "profile": "lesson-01",
+  "defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "prompt": "base.v1+D01+D02+D03"
+ }
+]

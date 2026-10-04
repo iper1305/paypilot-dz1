@@ -1,0 +1,26 @@
+{
+ "clean": {
+  "profile": "clean",
+  "active_defects": [],
+  "answer": "You'll receive **USD 535.33** for your EUR 500 conversion.\n\nHere's the breakdown:\n- **Mid rate:** 1.086957 EUR/USD\n- **Gross amount:** USD 543.48 (500 × 1.086957)\n- **Tier 1 spread:** 1.5% = USD 8.15\n- **Free allowance:** You have EUR 500 total; EUR 120 has been used, leaving EUR 380 remaining. Since your conversion uses EUR 500 (beyond your remaining allowance), the spread applies.\n- **Final amount:** USD 535.33\n\nThe conversion is ready to process whenever you'd like to proceed.",
+  "request_id": "8c1a0c8a7bff44e6",
+  "usage": {
+   "input_tokens": 4624,
+   "output_tokens": 293
+  }
+ },
+ "profile": {
+  "profile": "lesson-01",
+  "active_defects": [
+   "D01",
+   "D02",
+   "D03"
+  ],
+  "answer": "If you convert EUR 500 to USD right now, you'll receive **USD 535.33**.\n\nHere's how that breaks down:\n\n- **Mid rate:** 1.086957\n- **Your amount in USD (before spread):** EUR 500 × 1.086957 = USD 543.48\n- **Spread applied:** 1.5% = USD 8.15\n- **Final amount:** USD 535.33\n\nYou have a free allowance of EUR 500 per period, but since you've already used EUR 120 of it before, your remaining free allowance is EUR 380. Since your conversion of EUR 500 exceeds what's left, the full spread is applied to your transaction.",
+  "request_id": "7381a7e012124700",
+  "usage": {
+   "input_tokens": 5020,
+   "output_tokens": 279
+  }
+ }
+}

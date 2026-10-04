@@ -1,0 +1,55 @@
+
+== lesson-02: defects D04,D05,D16,D19,D20,D25 · prompt base.v1 · provider anthropic · judge claude-haiku-4-5
+   run 1 C-01  domain=FAIL faith=0.5 answe=0.5
+   run 1 C-02  domain=-    answe=1.0
+   run 1 C-03  domain=FAIL faith=0.875 answe=1.0 hallu=1.0
+   run 1 C-04  domain=FAIL faith=0.6 answe=0.909 hallu=0.667
+   run 1 C-05  domain=FAIL faith=0.727 answe=1.0
+   run 1 C-06  domain=FAIL faith=0.75 answe=0.5
+   run 1 C-07  domain=FAIL faith=0.889 answe=0.9
+   run 1 C-08  domain=FAIL faith=0.714 answe=1.0 hallu=1.0
+   run 1 C-09  domain=ok   faith=0.75 answe=1.0
+   run 1 C-10  domain=ok   faith=0.333 answe=0.75
+   run 1 C-11  domain=ok   faith=0.778 answe=0.875
+   run 1 C-12  domain=FAIL faith=0.833 answe=1.0
+   run 1 C-19  domain=ok   faith=0.167 answe=1.0
+
+Метрика                lesson-02             
+faithfulness           0.66                  
+answer relevancy       0.88                  
+hallucination rate ↓   0.89                  
+доменна коректність    0.33                  
+
+Зелена метрика на хибному висновку (faithfulness ≥ 0.85, домен ✗):
+   lesson-02 run 1 C-03: faithfulness 0.875 · engine: not eligible; answer offers it: 'is eligible'
+      «Good news: **TX-0402 is eligible for dispute**. Here's why:
+
+- **Transaction date**: July 14, 2026
+- **Dispute window**: 90 days from the transaction date
+- **Deadline**: October 12, 2026
+- **As of today** (September 15)»
+   lesson-02 run 1 C-07: faithfulness 0.889 · expected 2,154.35; numbers in answer: [2000.0, 1.086957, 2.0, 1.5, 1000.0, 2000.0]
+      «Here's your conversion breakdown:
+
+**EUR 2,000 → USD**
+
+- **Mid rate:** 1.086957
+- **Your tier:** Tier 2
+- **Spread applied:** 1.5%
+- **Free allowance:** EUR 1,000 per month (already used before this transaction, so not »
+
+Кандидати у false positive (LLM-метрика < 0.7, домен ✓ або без домену) — перевір очима:
+   lesson-02 run 1 C-10: {'faithfulness': 0.333}
+      «Your escalation has been queued (ID: 1). A support agent will contact you shortly to discuss the restriction and the next steps for your dispute.»
+   lesson-02 run 1 C-19: {'faithfulness': 0.167}
+      «I appreciate the question, but I should clarify that I don't have information about Verta's savings account products, interest rates, or terms in my available tools. My role is to help with transactional banking—balances»
+
+Поріг: скільки дефектних кейсів ловить і скільки чистих зупиняє без причини:
+   немає
+
+Вартість: формула лонгріда (кейси × (1 + метрики)) = 41 викликів; фактично 26 llm.call агента + 93 викликів судді
+   агент 65,995 in / 3,119 out токенів ≈ $0.082 (прайс 1.0/5.0 за 1M) · суддя ≈ $0.121 · разом ≈ $0.203
+
+звіт: reports/l02-lesson-02-20261004-181817.json
+
+JUDGE TOKENS: calls=93 in=43572 out=15493 avg_in=469 avg_out=167

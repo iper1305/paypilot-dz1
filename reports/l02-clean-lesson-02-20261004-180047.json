@@ -1,0 +1,557 @@
+{
+  "runs": {
+    "clean": 2,
+    "lesson-02": 3
+  },
+  "clock": "2026-09-15T10:00:00Z",
+  "judge_provider": "anthropic",
+  "judge_model": "claude-haiku-4-5",
+  "facts": {
+    "C-05": {
+      "from_currency": "EUR",
+      "to_currency": "USD",
+      "amount": 6000,
+      "mid_rate": 1.086957,
+      "tier": "tier2",
+      "spread_pct": 0.9,
+      "allowance_total_eur": 1000,
+      "allowance_used_before_eur": 5000.0,
+      "allowance_applied": false,
+      "gross_amount": 6521.73913,
+      "spread_amount": 58.695652,
+      "final_amount": 6463.043478
+    },
+    "C-11": {
+      "eligible": true,
+      "reason_code": "fraud_card_not_present",
+      "window_days": 120,
+      "tx_date": "2026-09-12",
+      "as_of": "2026-09-15",
+      "deadline": "2027-01-10",
+      "checks": {
+        "reason_code": "pass",
+        "tx_status": "pass",
+        "window": "pass",
+        "compliance_hold": "pass"
+      }
+    },
+    "C-12": {
+      "eligible": true,
+      "reason_code": "duplicate_charge",
+      "window_days": 60,
+      "tx_date": "2026-09-08",
+      "as_of": "2026-09-15",
+      "deadline": "2026-11-07",
+      "checks": {
+        "reason_code": "pass",
+        "tx_status": "pass",
+        "window": "pass",
+        "compliance_hold": "pass"
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "C-05",
+      "answer": "Here's your FX breakdown for 6,000 EUR to USD:\n\n| Component | Value |\n|---|---|\n| **Mid rate** | 1.086957 |\n| **Gross amount** (6,000 × 1.086957) | 6,521.74 USD |\n| **Tier spread** | 0.9% (tier 2) |\n| **Spread cost** | 58.70 USD |\n| **Free allowance** | 1,000 EUR (already fully used) |\n| **Allowance applied** | No |\n| **Final amount** | **6,463.04 USD** |\n\nYou will receive **6,463.04 USD** for your 6,000 EUR conversion. Your free allowance of 1,000 EUR was exhausted on previous conversions, so the full 0.9% tier 2 spread applies to this transaction.",
+      "request_id": "22c346bc42d54d5d",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4618,
+        "output_tokens": 330,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.556,
+          "reason": "The score is 0.56 because the actual output contains several significant issues with accuracy and verifiability. The spread_amount of 58.695652 is presented as exactly 58.70 USD when it only rounds to that value. More critically, the allowance logic is misrepresented: the allowance_total_eur was 1000 EUR but allowance_used_before_eur was already 5000.0 EUR, meaning the allowance was overused and exceeded on previous transactions, not simply 'fully used' as claimed. Additionally, while the retrieval context shows the allowance was already exhausted before this transaction (allowance_applied was false), the context does not explicitly explain why the full spread applies due to allowance exhaustion, making the causal claim unverifiable."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. All key facts are correctly stated: Tier 2 FX spread (0.9%), monthly conversion allowance (EUR 1,000), and all calculated amounts (gross: 6,521.74 USD, spread: 58.70 USD, final: 6,463.04 USD). The output accurately reflects the rules engine result with no contradictions or deviations from the source material."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.01069
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 6,463.04; numbers in answer: [6000.0, 1.086957, 6000.0, 1.086957, 6521.74, 0.9]"
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-11",
+      "answer": "You have **120 days** from the transaction date to dispute it as card-not-present fraud. \n\nYour transaction TX-0902 is dated 12 September 2026, so your deadline is **10 January 2027**. You are currently within the dispute window and eligible to open the dispute.\n\nWould you like me to open the dispute now?",
+      "request_id": "54a9ada180294f8c",
+      "tools": [
+        "check_dispute_eligibility",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5179,
+        "output_tokens": 231,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.75,
+          "reason": "The score is 0.75 because while the actual output correctly identifies that transaction TX-0902 is eligible for dispute with a deadline of 2027-01-10, it makes claims about the user being within the dispute window without the retrieval context providing the current date. This creates ambiguity around whether the stated eligibility status is currently valid, as the context does not confirm the user's present position relative to the deadline."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. It accurately reflects the dispute window rules (120 days for fraud_card_not_present), correctly identifies the transaction date (12 September 2026), accurately calculates the deadline (10 January 2027), and properly confirms eligibility status. No contradictions were identified between the output and the contextual information."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00909
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-12",
+      "answer": "Good news: you are eligible to dispute this transaction as a duplicate charge.\n\n**Dispute window for duplicate charge: 60 days**\n\nYour transaction TX-0201 was dated **September 8, 2026**. The deadline to open a dispute is **November 7, 2026** — you have until then. As of today (September 15), you have **53 days remaining**.\n\nOnce you open the dispute, Verta's review target is 10 business days. Would you like me to proceed with opening the dispute?",
+      "request_id": "dd2fc4c950c443cf",
+      "tools": [
+        "check_dispute_eligibility",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5147,
+        "output_tokens": 264,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.667,
+          "reason": "The score is 0.67 because the actual output contains two significant issues: First, while the output discusses calendar days remaining until November 7, 2026, the retrieval context does not explicitly confirm this specific calculation or validate the September 15 reference date, creating ambiguity about the accuracy of the timeline presented. Second, the output makes claims about Verta's review target for disputes and a 10 business day timeframe that are not supported by any information in the retrieval context, representing unverified assertions that cannot be traced back to the provided source material."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. All key facts are accurately represented: the 60-day chargeback window for duplicate_charge disputes, the eligibility status, the transaction date (September 8, 2026), the deadline (November 7, 2026), the as_of date (September 15, 2026), and the correct calculation of 53 days remaining. No contradictions were identified."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00924
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 1
+    },
+    {
+      "id": "C-05",
+      "answer": "Here's your full FX breakdown:\n\n**Conversion details:**\n- **Amount:** 6,000 EUR\n- **Mid rate:** 1.086957 EUR/USD\n- **Your tier:** Tier 2\n- **Spread:** 0.9%\n\n**Calculation:**\n- Gross amount (at mid rate): 6,000 × 1.086957 = **6,521.74 USD**\n- Spread charge (0.9%): **−58.70 USD**\n- Free allowance: You have a 1,000 EUR monthly allowance, but you've already used 5,000 EUR, so no allowance applies to this conversion.\n\n**Final amount you'll receive: 6,463.04 USD**",
+      "request_id": "23df3e88ef1b476d",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 4638,
+        "output_tokens": 313,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output contains no contradictions with the retrieval context. The information presented is entirely faithful and accurate!"
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. All key values (gross amount, spread amount, final amount, tier level, and spread percentage) match the Rules engine output, the calculation methodology aligns with fx-guide.md principles, and the tariff information (Tier 2 with 0.9% FX spread and 1,000 EUR monthly allowance) is accurately represented. No contradictions were identified."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.0081
+      },
+      "domain": {
+        "passed": true,
+        "detail": "expected 6,463.04; numbers in answer: [6000.0, 1.086957, 2.0, 0.9, 6000.0, 1.086957]"
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-11",
+      "answer": "Good news: **you are eligible to dispute TX-0902 as card-not-present fraud, and you have until 10 January 2027** to do so.\n\nHere's what the system shows:\n- **Transaction date:** 12 September 2026\n- **Dispute window:** 120 days (the standard window for card-not-present fraud)\n- **Deadline:** 10 January 2027\n- **Days remaining:** You still have time within that window\n\nAll checks have passed: the reason code is valid, the transaction status allows a dispute, and you are within the window.\n\nWould you like me to open this dispute for you now? If so, I'll need to confirm:\n1. The amount to dispute (the full transaction amount, or a different amount?)\n2. That you want to proceed with an immediate dispute",
+      "request_id": "53e61e66c10b4594",
+      "tools": [
+        "check_dispute_eligibility",
+        "search_knowledge_base",
+        "get_transactions"
+      ],
+      "agent": {
+        "input_tokens": 5272,
+        "output_tokens": 401,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.556,
+          "reason": "The score is 0.56 because the actual output contains several ambiguities that lack explicit support in the retrieval context. Specifically, the output makes claims about the dispute window for TX-0902 without the context providing current date information to verify this timing. Additionally, while the context confirms the fraud_card_not_present reason code and that eligibility checks passed, it does not explicitly validate the reason code itself as 'valid'. The output also references transaction status without the context explicitly detailing what that status actually is. These gaps between what is stated and what is directly supported in the retrieval context significantly impact the faithfulness of the response."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. All key details match exactly: eligible status (true), reason code (fraud_card_not_present), window (120 days), transaction date (12 September 2026), and deadline (10 January 2027). No contradictions were identified, and all checks passed as stated."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.01004
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-12",
+      "answer": "Good news: you are eligible to dispute this transaction as a duplicate charge.\n\n**Dispute window:** The duplicate_charge reason code has a **60-day window** from the transaction date. Your transaction occurred on September 8, 2026, which means your deadline is **November 7, 2026**. As of today (September 15), you have **53 days remaining** to open the dispute.\n\nAll eligibility checks have passed — the transaction status, window, and your account are clear. Would you like me to open the dispute now?",
+      "request_id": "b0bbe5b456b346e6",
+      "tools": [
+        "check_dispute_eligibility",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5150,
+        "output_tokens": 267,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.833,
+          "reason": "The score is 0.83 because the actual output makes a specific claim about having 53 days remaining in a 60-day window as of September 15, 2026 (7 days after a September 8, 2026 transaction), but the retrieval context does not specify the current date or confirm that September 15, 2026 is the reference point being used. This introduces ambiguity and makes the claim unverifiable against the provided information, though the mathematical calculation itself appears sound if the assumed date were correct."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. It accurately reflects the dispute reason code (duplicate_charge), correctly identifies the 60-day window, provides the exact transaction date (2026-09-08) and deadline (2026-11-07), and properly confirms eligibility status. No contradictions were identified between the output and the contextual information."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.0087
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "clean",
+      "run": 2
+    },
+    {
+      "id": "C-05",
+      "answer": "Here's your full FX breakdown for 6000 EUR to USD:\n\n**Components:**\n- **Mid rate:** 1.086957\n- **Tier spread:** 1.5% (tier2)\n- **Free allowance:** 1000 EUR total (already used 5000 EUR, so no allowance applies)\n\n**Calculation:**\n- Gross amount (at mid rate): 6521.74 USD\n- Spread cost (1.5%): 97.83 USD\n- **Final amount: 6400 USD**\n\nYou'll receive **6400 USD** for your 6000 EUR conversion.",
+      "request_id": "892f0b68a0c4451b",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 5016,
+        "output_tokens": 264,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.875,
+          "reason": "The score is 0.88 because the actual output claims the final amount received is 6400 USD, when the retrieval context indicates it should be 6423.913043 USD. This numerical discrepancy represents a minor but notable deviation from the accurate figure provided in the source material."
+        },
+        "hallucination": {
+          "score": 0.667,
+          "reason": "The score is 0.33 because while the actual output correctly applies the FX calculation principle (final amount = gross amount - spread amount), it contains critical factual errors: the tier spread is incorrectly stated as 1.5% instead of the documented 0.9% for Tier 2, resulting in cascading calculation errors (spread amount: 97.83 USD vs. correct 58.70 USD; final amount: 6400 USD vs. correct 6463.04 USD). These multiple contradictions with the source context significantly undermine alignment."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00818
+      },
+      "domain": {
+        "passed": false,
+        "detail": "expected 6,463.04; numbers in answer: [6000.0, 1.086957, 1.5, 2.0, 1000.0, 5000.0]"
+      },
+      "profile": "lesson-02",
+      "run": 1
+    },
+    {
+      "id": "C-11",
+      "answer": "Good news: you are **eligible to dispute TX-0902 as card-not-present fraud**. Here are the details:\n\n**Dispute window:** You have **120 days** from the transaction date to file a dispute. The transaction occurred on **12 September 2026**, which means your deadline is **10 January 2027**.\n\n**Current status:** As of today (15 September 2026), you're 3 days in, so you have 117 days remaining—plenty of time to act.\n\n**What happens next:** I can open this dispute for you right away. Once filed, our fraud team will investigate the claim that the card was used without your authorisation for an online purchase you didn't make. You'll receive updates on the investigation as it progresses.\n\nWould you like me to go ahead and open the dispute for TX-0902 now?",
+      "request_id": "2916f8404b894d4e",
+      "tools": [
+        "check_dispute_eligibility",
+        "get_transactions"
+      ],
+      "agent": {
+        "input_tokens": 5141,
+        "output_tokens": 361,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.714,
+          "reason": "The score is 0.71 because the actual output makes claims that go beyond what the retrieval context supports. Specifically, the output appears to characterize the fraud_card_not_present reason code as involving an online purchase without the retrieval context providing those details. Additionally, the output suggests the user will receive updates on the investigation's progress, but the retrieval context does not contain information to support this claim. These ambiguities and unsupported assertions reduce the overall faithfulness of the response."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts and the rules engine result. All key facts are accurately represented: the 120-day dispute window for fraud_card_not_present is correctly stated, the deadline of 10 January 2027 is properly calculated from the transaction date of 12 September 2026, and the eligibility status is correctly confirmed. No contradictions were identified between the output and the supporting evidence."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00886
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "lesson-02",
+      "run": 1
+    },
+    {
+      "id": "C-12",
+      "answer": "Good news: you're well within the dispute window for duplicate charges. Verta allows **90 days** to dispute a transaction as a duplicate charge. \n\nYour transaction from September 8, 2026 has a deadline of **December 7, 2026**, so you have **83 days** remaining to file the dispute.\n\nWould you like me to open the dispute now for TX-0201 under the duplicate charge reason?",
+      "request_id": "4ca50a12bfb6424f",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 4988,
+        "output_tokens": 192,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output incorrectly calculates the remaining days until the dispute deadline. The context shows the transaction date is 2026-09-08 and the as_of date is 2026-09-15, with a dispute deadline of 2026-12-07. The output states there are 83 days remaining, but this appears to be calculated from the transaction date rather than the as_of date. From the as_of date (2026-09-15) to the deadline (2026-12-07) is actually 83 days remaining, which happens to be correct; however, the total dispute window from transaction date to deadline is 90 days, not 83 days. This temporal calculation error slightly undermines the overall faithfulness of the output."
+        },
+        "hallucination": {
+          "score": 0.667,
+          "reason": "The score is 0.33 because the actual output contains multiple significant factual contradictions with the provided contexts. Specifically: (1) it incorrectly states a 90-day window for duplicate_charge disputes when the context specifies 60 days, (2) it provides an incorrect deadline of December 7, 2026 instead of the correct November 7, 2026 from the rules engine, and (3) it claims 83 days remaining which does not align with the actual 60-day window from the transaction date. While the output demonstrates understanding of the general principle that disputes have time windows, the specific details are substantially inaccurate, resulting in low alignment with the provided contexts."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00899
+      },
+      "domain": {
+        "passed": false,
+        "detail": "not found: \\b60[\\s-]*(?:calendar\\s+)?days?\\b"
+      },
+      "profile": "lesson-02",
+      "run": 1
+    },
+    {
+      "id": "C-05",
+      "answer": "Here's your full FX conversion breakdown for 6,000 EUR to USD:\n\n**Conversion details:**\n- **Mid rate:** 1.086957 USD/EUR\n- **Your tier:** Tier 2\n- **Spread:** 1.5%\n- **Free allowance:** 1,000 EUR total (already used 5,000 EUR, so no allowance available for this conversion)\n\n**Calculation:**\n- Gross amount (6,000 EUR × 1.086957): 6,521.74 USD\n- Less spread (1.5%): −97.83 USD\n- **Final amount: 6,423.91 USD**\n\n**Your final amount due: 6,500 USD** (rounded up to the nearest hundred)\n\nThe spread is applied because your free allowance of 1,000 EUR has already been fully used on previous conversions.",
+      "request_id": "1a673edf1e3a4043",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 5016,
+        "output_tokens": 323,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.7,
+          "reason": "The score is 0.70 because while the output demonstrates partial understanding, it contains several significant issues. The output claims a final amount of 6,500 USD, but the actual calculated value of 6,423.913043 USD rounds to 6,423.91 USD, not 6,500 USD. Additionally, there is a logical contradiction regarding the allowance: the user exceeded their 1,000 EUR allowance by using 5,000 EUR, yet the context indicates allowance_applied was false, meaning the allowance was not actually applied despite being exceeded. Furthermore, the output's reasoning about why the spread was applied contradicts the context, which shows the spread was not applied due to the allowance status being false. These contradictions between the stated output values and the contextual data significantly impact the faithfulness of the response."
+        },
+        "hallucination": {
+          "score": 0.667,
+          "reason": "The score is 0.33 because while the actual output correctly applies the calculation methodology (final amount = gross amount - spread amount), it contains critical factual errors: the spread percentage is stated as 1.5% instead of the correct 0.9% for Tier 2, leading to cascading errors in the spread amount (97.83 USD vs. 58.70 USD) and final amount (6,423.91 USD vs. 6,463.04 USD). Additionally, an unsupported rounding to 6,500 USD contradicts the rules engine result. These multiple contradictions with the source contexts significantly outweigh the single methodological alignment."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.01049
+      },
+      "domain": {
+        "passed": false,
+        "detail": "expected 6,463.04; numbers in answer: [6000.0, 1.086957, 2.0, 1.5, 1000.0, 5000.0]"
+      },
+      "profile": "lesson-02",
+      "run": 2
+    },
+    {
+      "id": "C-11",
+      "answer": "Good news: the transaction is eligible for dispute as card-not-present fraud.\n\n**Your window:** You have **120 days** from the transaction date to file a dispute. Since the charge was made on 12 September 2026, your deadline is **10 January 2027**. You still have time.\n\n**Next step:** I can open the dispute for you right now. To proceed, please confirm:\n1. The transaction ID is TX-0902 (the PharmaPlus payment)?\n2. You'd like me to dispute it under fraud—card not present?\n\nOnce you confirm, I'll file it immediately.",
+      "request_id": "2a1aede3d8e043e2",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 5015,
+        "output_tokens": 242,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.667,
+          "reason": "The score is 0.67 because the actual output contains two unverified claims not supported by the retrieval context. First, while the context confirms transaction ID TX-0902, it does not establish any association with 'PharmaPlus payment,' making this detail unverifiable. Second, the output claims the AI can open a dispute immediately upon user confirmation, but this capability is not mentioned in the provided context. These gaps between the actual output and retrievable information prevent a higher faithfulness rating."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. All key facts are accurately represented: the dispute reason code (fraud_card_not_present), the 120-day window, the transaction date (12 September 2026), the deadline (10 January 2027), and the eligibility determination (true). No contradictions were identified, and all statements are directly supported by the contextual information."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.008
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "lesson-02",
+      "run": 2
+    },
+    {
+      "id": "C-12",
+      "answer": "Good news: you're well within the dispute window. Under Verta's policy, duplicate charges can be disputed for up to **90 days** from the transaction date. Your charge on September 8 has a deadline of **December 7, 2026**, and as of today (September 15) you have **83 days remaining** to file.\n\nThe transaction is eligible for dispute as a duplicate charge — all checks have passed. Would you like me to open the dispute for you now, or do you need any additional information first?",
+      "request_id": "bc9c1062cad048fe",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 4990,
+        "output_tokens": 214,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because while the actual output correctly calculates that there are 83 days remaining between September 15, 2026 and the dispute deadline of December 7, 2026, the contradiction notes this calculation is ambiguous and should be verified, introducing some uncertainty about the precision and reliability of the date calculation presented."
+        },
+        "hallucination": {
+          "score": 1.0,
+          "reason": "The score is 0.00 because the actual output contains multiple critical factual errors that directly contradict the provided contexts. Specifically: (1) the dispute window for duplicate_charge is incorrectly stated as 90 days instead of the correct 60 days, (2) the deadline is incorrectly calculated as December 7, 2026 instead of November 7, 2026, and (3) the remaining days calculation of 83 days is inconsistent with the correct deadline. These contradictions are corroborated by both the context documentation and the rules engine results, indicating the output is fundamentally misaligned with the factual information provided."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00815
+      },
+      "domain": {
+        "passed": false,
+        "detail": "not found: \\b60[\\s-]*(?:calendar\\s+)?days?\\b"
+      },
+      "profile": "lesson-02",
+      "run": 2
+    },
+    {
+      "id": "C-05",
+      "answer": "Here's your full breakdown for converting 6,000 EUR to USD:\n\n**Mid rate:** 1.086957 (market rate)  \n**Your tier:** Tier 2  \n**Spread applied:** 1.5% (97.83 USD)  \n**Free allowance:** 1,000 EUR annually — you've already used 5,000 EUR, so no allowance applies to this conversion\n\n**Calculation:**\n- Gross amount: 6,000 EUR × 1.086957 = 6,521.74 USD\n- Spread deducted: −97.83 USD\n- **Final amount: 6,500 USD**\n\nThis is the amount you'll receive when you execute this conversion.",
+      "request_id": "0a139165b0414ecc",
+      "tools": [
+        "quote_fx"
+      ],
+      "agent": {
+        "input_tokens": 5016,
+        "output_tokens": 287,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.667,
+          "reason": "The score is 0.67 because the actual output contains multiple significant factual errors. First, it incorrectly states the reason the allowance was not applied—the output fails to clarify that the allowance_used_before_eur (5000.0) had already exceeded the allowance_total_eur (1000) before this transaction, rather than being exceeded by this transaction. Second, the actual output provides an incorrect final amount of 6,500 USD when the correct calculation (gross_amount 6521.73913 minus spread_amount 97.826087) yields 6,423.913043 USD. This error is compounded as the output also misrepresents the amount the user will receive as 6,500 USD instead of the correct 6,423.913043 USD. These calculation and contextual errors significantly undermine the accuracy of the response."
+        },
+        "hallucination": {
+          "score": 0.667,
+          "reason": "The score is 0.33 because while the actual output correctly applies the formula (final amount = gross amount - spread amount), it contains significant contradictions: the FX spread percentage for Tier 2 is incorrectly stated as 1.5% instead of 0.9%, and the calculated spread amount (97.83 USD) and final amount (6,500 USD) deviate substantially from the rules engine results (58.695652 USD and 6463.043478 USD respectively). These factual errors substantially undermine alignment with the provided contexts."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00984
+      },
+      "domain": {
+        "passed": false,
+        "detail": "expected 6,463.04; numbers in answer: [6000.0, 1.086957, 2.0, 1.5, 97.83, 1000.0]"
+      },
+      "profile": "lesson-02",
+      "run": 3
+    },
+    {
+      "id": "C-11",
+      "answer": "Good news: you **are eligible** to dispute TX-0902 as card-not-present fraud.\n\nHere are the key details:\n\n**Dispute window:** For card-not-present fraud, Verta allows **120 days** from the transaction date to open a dispute.\n\n**Your transaction:**\n- Transaction date: 12 September 2026\n- Dispute deadline: 10 January 2027\n- Days remaining (as of 15 September 2026): 117 days\n\nAll checks have passed — the transaction is settled, your reason code is valid, and you are well within the window. You have plenty of time to file this dispute.\n\nWould you like me to open the dispute for TX-0902 now?",
+      "request_id": "c308f237861a4554",
+      "tools": [
+        "check_dispute_eligibility",
+        "search_knowledge_base"
+      ],
+      "agent": {
+        "input_tokens": 5440,
+        "output_tokens": 320,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.75,
+          "reason": "The score is 0.75 because while the actual output demonstrates good overall alignment with the retrieval context, there are two ambiguities that prevent a higher score. First, the output infers that TX-0902 is settled based on context, but this is not explicitly stated in the retrieval context itself. Second, the phrase 'well within' the dispute window is used in the actual output, but the retrieval context does not explicitly quantify how much time remains, making this characterization subjective rather than directly supported."
+        },
+        "hallucination": {
+          "score": 0.0,
+          "reason": "The score is 1.00 because the actual output demonstrates perfect alignment with all provided contexts. It accurately identifies the dispute reason code (card-not-present fraud), correctly applies the 120-day chargeback window, properly calculates the deadline (10 January 2027 from transaction date 12 September 2026), confirms user eligibility, and matches the rules engine result. No contradictions were identified."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00937
+      },
+      "domain": {
+        "passed": true,
+        "detail": ""
+      },
+      "profile": "lesson-02",
+      "run": 3
+    },
+    {
+      "id": "C-12",
+      "answer": "Good news: your duplicate charge dispute is eligible to proceed. You have **90 days from the transaction date** to file, which means your deadline is **7 December 2026**. \n\nAs of today (15 September), you have **83 days remaining** — plenty of time.\n\nThe transaction from 8 September passes all eligibility checks: the reason code is valid, the transaction status permits disputes, and you're within the dispute window.\n\nWould you like me to open the dispute for you now, or do you need any other information about this charge first?",
+      "request_id": "ce7d0787bedd4854",
+      "tools": [
+        "check_dispute_eligibility"
+      ],
+      "agent": {
+        "input_tokens": 4989,
+        "output_tokens": 221,
+        "llm_calls": 2
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output contains a minor arithmetic error regarding the number of days remaining until the dispute deadline of 7 December 2026. The output states there are 83 days remaining as of 15 September 2026, when the correct count is 82 days. While the overall content is largely faithful to the retrieval context, this factual inaccuracy in the specific day count prevents a higher score."
+        },
+        "hallucination": {
+          "score": 0.667,
+          "reason": "The score is 0.33 because while the actual output correctly identifies that the dispute is eligible and passes all checks (aligning with Context 3), it contains significant factual contradictions regarding the dispute window and deadline. The output incorrectly states a 90-day window instead of the correct 60-day window for duplicate_charge disputes (contradicting Contexts 1 and 2), and calculates an incorrect deadline of December 7, 2026 instead of the correct November 7, 2026 (contradicting Context 3). These material errors in critical dispute details substantially undermine the overall accuracy despite the correct eligibility determination."
+        }
+      },
+      "judge": {
+        "calls": 6,
+        "cost_usd": 0.00806
+      },
+      "domain": {
+        "passed": false,
+        "detail": "not found: \\b60[\\s-]*(?:calendar\\s+)?days?\\b"
+      },
+      "profile": "lesson-02",
+      "run": 3
+    }
+  ]
+}

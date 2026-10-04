@@ -1,0 +1,29 @@
+
+== clean: defects - · prompt base.v1 · provider anthropic · judge claude-haiku-4-5
+   run 1 C-08  domain=ok   hallu=0.0
+   run 2 C-08  domain=ok   hallu=0.0
+
+== lesson-02: defects D04,D05,D16,D19,D20,D25 · prompt base.v1+D04+D05+D25 · provider anthropic · judge claude-haiku-4-5
+   run 1 C-08  domain=FAIL hallu=0.667
+   run 2 C-08  domain=FAIL hallu=1.0
+   run 3 C-08  domain=FAIL hallu=1.0
+
+Метрика                clean                 lesson-02             Дельта
+faithfulness           —                     —                     
+answer relevancy       —                     —                     
+hallucination rate ↓   0.00 (0.00–0.00)      0.89 (0.67–1.00)      +0.89
+доменна коректність    1.00 (1.00–1.00)      0.00 (0.00–0.00)      -1.00
+
+Зелена метрика на хибному висновку (faithfulness ≥ 0.85, домен ✗):
+   немає
+
+Кандидати у false positive (LLM-метрика < 0.7, домен ✓ або без домену) — перевір очима:
+   немає
+
+Поріг: скільки дефектних кейсів ловить і скільки чистих зупиняє без причини:
+   немає
+
+Вартість: формула лонгріда (кейси × (1 + метрики)) = 10 викликів; фактично 10 llm.call агента + 10 викликів судді
+   агент 24,269 in / 1,428 out токенів ≈ $0.031 (прайс 1.0/5.0 за 1M) · суддя ≈ $0.018 · разом ≈ $0.049
+
+звіт: reports/l02-clean-lesson-02-20261004-180449.json
