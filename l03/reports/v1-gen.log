@@ -1,0 +1,41 @@
+Unable to find image 'python:3.12-slim' locally
+3.12-slim: Pulling from library/python
+bbeda6b4abb7: Pulling fs layer
+387b25ff7b94: Pulling fs layer
+4dbdca1a513d: Pulling fs layer
+6e2fcafe72a4: Pulling fs layer
+6e2fcafe72a4: Waiting
+387b25ff7b94: Verifying Checksum
+387b25ff7b94: Download complete
+6e2fcafe72a4: Verifying Checksum
+6e2fcafe72a4: Download complete
+4dbdca1a513d: Verifying Checksum
+4dbdca1a513d: Download complete
+bbeda6b4abb7: Verifying Checksum
+bbeda6b4abb7: Download complete
+bbeda6b4abb7: Pull complete
+387b25ff7b94: Pull complete
+4dbdca1a513d: Pull complete
+6e2fcafe72a4: Pull complete
+Digest: sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+Status: Downloaded newer image for python:3.12-slim
+# DSP-0401-FCNP: middle, TX-0401 TechMart Online 2026-07-20, fraud_card_not_present 57/120 днів (запас 63), eligible=True
+# DSP-0401-GNR: middle, TX-0401 TechMart Online 2026-07-20, goods_not_received 57/90 днів (запас 33), eligible=True
+# DSP-0401-DUP: edge_in, TX-0401 TechMart Online 2026-07-20, duplicate_charge 57/60 днів (запас 3), eligible=True
+# DSP-0402-DUP: edge_out, TX-0402 TechMart Online 2026-07-14, duplicate_charge 63/60 днів (запас -3), eligible=False
+# DSP-0403-DUP: middle, TX-0403 CityParking 2026-09-01, duplicate_charge 14/60 днів (запас 46), eligible=True
+# DSP-0601-HOLD: compliance hold у CUS-0006, TX-0601 goods_not_received, eligible=False (fail: customer account under compliance review)
+# FX-04-500: edge_in: рівно залишок ліміту — спреду немає, CUS-0004 tier1 використано 0 з 500, 500 EUR->USD: spread 0.0%, final 543.48
+# FX-04-501: edge_out: на 1 EUR понад ліміт — спред на всю суму, CUS-0004 tier1 використано 0 з 500, 501 EUR->USD: spread 1.5%, final 536.40
+# FX-04-1000: middle: удвічі більше за місячний ліміт, CUS-0004 tier1 використано 0 з 500, 1000 EUR->USD: spread 1.5%, final 1070.65
+# FX-07-1000: edge_in: рівно залишок ліміту — спреду немає, CUS-0007 tier2 використано 0 з 1000, 1000 EUR->USD: spread 0.0%, final 1086.96
+# FX-07-1001: edge_out: на 1 EUR понад ліміт — спред на всю суму, CUS-0007 tier2 використано 0 з 1000, 1001 EUR->USD: spread 0.9%, final 1078.25
+# FX-004: middle: удвічі більше за місячний ліміт, CUS-0007 tier2 використано 0 з 1000, 2000 EUR->USD: spread 0.9%, final 2154.35
+# FX-03-2500: edge_in: рівно залишок ліміту — спреду немає, CUS-0003 tier3 використано 2500 з 5000, 2500 EUR->USD: spread 0.0%, final 2717.39
+# FX-03-2501: edge_out: на 1 EUR понад ліміт — спред на всю суму, CUS-0003 tier3 використано 2500 з 5000, 2501 EUR->USD: spread 0.5%, final 2704.89
+# FX-03-10000: middle: удвічі більше за місячний ліміт, CUS-0003 tier3 використано 2500 з 5000, 10000 EUR->USD: spread 0.5%, final 10815.22
+# FX-05-6000: скарга C-05: ліміт уже вичерпано, CUS-0005 tier2 використано 5000 з 1000, 6000 EUR->USD: spread 0.9%, final 6463.04
+# FX-10-5000GBP: інша валюта, ліміт вичерпано (клієнт зі скарги C-09), CUS-0010 tier3 використано 15000 з 5000, 5000 GBP->EUR: spread 0.5%, final 5820.75
+# LIM-10: CUS-0010 tier3, місяць витрачено 35,334.00, залишок місяця 964,666.00, дня 95,086.00
+# LIM-01: CUS-0001 tier1, місяць витрачено 1,254.90, залишок місяця 48,745.10, дня 5,000.00
+# 29 cases generated from the engines + 11 manual = 40

@@ -1,0 +1,136 @@
+{
+  "prompt_version": "base.v1",
+  "set_hash": "69f072184cdc",
+  "profile": "clean",
+  "judge_model": "claude-haiku-5-5",
+  "rubric_version": "rubric.v1",
+  "elapsed": 7.6,
+  "set": "l03-iryna",
+  "gate": "all",
+  "ran_at": "2026-10-11T18:26:02.502538+00:00",
+  "passed": 2,
+  "total": 2,
+  "skipped": 0,
+  "by_layer": {
+    "generation": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "coverage": {
+    "cases": 2,
+    "layers": {
+      "generation": 2
+    },
+    "oracles": {
+      "engine": 2
+    },
+    "sources": {
+      "complaint": 1,
+      "engine": 1
+    },
+    "severities": {
+      "high": 2
+    },
+    "ladder_levels": [
+      2
+    ],
+    "gates": {
+      "daily": 2
+    },
+    "human_oracle_pct": 0.0,
+    "severity_filled_pct": 100.0
+  },
+  "cases": [
+    {
+      "skipped": false,
+      "id": "FX-07-1000",
+      "layer": "generation",
+      "oracle": "engine",
+      "severity": "high",
+      "gate": "daily",
+      "runs": 1,
+      "verdict": {
+        "passed": true,
+        "level": 2,
+        "assertion": "tool_grounded_numeric",
+        "detail": "quote_fx.final_amount = 1086.956522"
+      },
+      "answers": [
+        "You're on tier 2. Here's your conversion breakdown:\n\n- **Amount**: 1000 EUR\n- **Mid rate**: 1.086957\n- **Tier spread**: 0% (no spread applied)\n- **Free allowance**: 1000 EUR total; 0 EUR used before this conversion\n- **Allowance applied**: Yes — your entire 1000 EUR conversion is covered by your free allowance\n\n**Final amount you receive: 1086.96 USD**"
+      ],
+      "latency_ms": 3723,
+      "tokens": 4880,
+      "tool_calls": [
+        {
+          "name": "quote_fx",
+          "arguments": {
+            "customer_id": "CUS-0007",
+            "amount": 1000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "result": {
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "amount": 1000,
+            "mid_rate": 1.086957,
+            "tier": "tier2",
+            "spread_pct": 0.0,
+            "allowance_total_eur": 1000,
+            "allowance_used_before_eur": 0.0,
+            "allowance_applied": true,
+            "gross_amount": 1086.956522,
+            "spread_amount": 0.0,
+            "final_amount": 1086.956522
+          }
+        }
+      ]
+    },
+    {
+      "skipped": false,
+      "id": "FX-004",
+      "layer": "generation",
+      "oracle": "engine",
+      "severity": "high",
+      "gate": "daily",
+      "runs": 1,
+      "verdict": {
+        "passed": true,
+        "level": 2,
+        "assertion": "tool_grounded_numeric",
+        "detail": "quote_fx.final_amount = 2154.347826"
+      },
+      "answers": [
+        "Here is your FX quote for converting 2000 EUR to USD:\n\n- **Mid-market rate:** 1.086957\n- **Tier spread:** 0.9% (tier2)\n- **Gross amount before spread:** 2173.91 USD\n- **Spread charge:** 19.57 USD\n- **Final amount you receive:** **2154.35 USD**\n\nYour free FX allowance of 1000 EUR has not been used, so this conversion does not qualify for the free allowance (your transaction exceeds the threshold). "
+      ],
+      "latency_ms": 3819,
+      "tokens": 4906,
+      "tool_calls": [
+        {
+          "name": "quote_fx",
+          "arguments": {
+            "customer_id": "CUS-0007",
+            "amount": 2000,
+            "from_currency": "EUR",
+            "to_currency": "USD"
+          },
+          "result": {
+            "from_currency": "EUR",
+            "to_currency": "USD",
+            "amount": 2000,
+            "mid_rate": 1.086957,
+            "tier": "tier2",
+            "spread_pct": 0.9,
+            "allowance_total_eur": 1000,
+            "allowance_used_before_eur": 0.0,
+            "allowance_applied": false,
+            "gross_amount": 2173.913043,
+            "spread_amount": 19.565217,
+            "final_amount": 2154.347826
+          }
+        }
+      ]
+    }
+  ]
+}

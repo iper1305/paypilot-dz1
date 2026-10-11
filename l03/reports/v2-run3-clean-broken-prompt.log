@@ -1,0 +1,620 @@
+set l03-iryna (40 cases)  profile clean  prompt base.v1
+------------------------------------------------------------------------
+PASS  DSP-0401-FCNP-E L1 action      tool_result_flag  3.5s, 4857 tokens
+      question  I'm CUS-0004. Transaction TX-0401 (TechMart Online) was on 20 July 2026. Reason:
+                fraud card not present. Can I still dispute it?
+      expected  check_dispute_eligibility.eligible = True
+      tool      check_dispute_eligibility(transaction_id=TX-0401,
+                reason_code=fraud_card_not_present)
+                -> eligible=True, reason_code=fraud_card_not_present, window_days=120,
+                tx_date=2026-07-20, as_of=2026-09-15, deadline=2026-11-17, checks={'reason_code':
+                'pass', 'tx_status': 'pass', 'window': 'pass', 'compliance_hold': 'pass'}
+      verdict   check_dispute_eligibility.eligible = True
+      answer    Yes, you can still dispute it. The transaction is eligible for dispute under
+                fraud_card_not_present.
+                Eligibility details:
+                - Transaction date: 20 July 2026
+                - Dispute window: 120 days
+                - Deadline: 17 November 2026 (56 days remaining) …
+
+PASS  DSP-0401-GNR-E L1 action      tool_result_flag  3.6s, 4859 tokens
+      question  I'm CUS-0004. Transaction TX-0401 (TechMart Online) was on 20 July 2026. Reason:
+                goods not received. Can I still dispute it?
+      expected  check_dispute_eligibility.eligible = True
+      tool      check_dispute_eligibility(transaction_id=TX-0401, reason_code=goods_not_received)
+                -> eligible=True, reason_code=goods_not_received, window_days=90,
+                tx_date=2026-07-20, as_of=2026-09-15, deadline=2026-10-18, checks={'reason_code':
+                'pass', 'tx_status': 'pass', 'window': 'pass', 'compliance_hold': 'pass'}
+      verdict   check_dispute_eligibility.eligible = True
+      answer    Yes, you can still dispute this transaction. Here's what I found:
+                Transaction TX-0401 (TechMart Online, 20 July 2026) is eligible for dispute.
+                - Reason code: Goods not received ✓
+                - Dispute window: 90 days from the transaction date
+                - Deadline: 18 October 2026
+                - Status: All checks passed (reason, transaction status, timeframe, and compliance …
+
+PASS  DSP-0401-DUP-E L1 action      tool_result_flag  3.4s, 4822 tokens
+      question  I'm CUS-0004. Transaction TX-0401 (TechMart Online) was on 20 July 2026. Reason:
+                duplicate charge. Can I still dispute it?
+      expected  check_dispute_eligibility.eligible = True
+      tool      check_dispute_eligibility(transaction_id=TX-0401, reason_code=duplicate_charge)
+                -> eligible=True, reason_code=duplicate_charge, window_days=60, tx_date=2026-07-20,
+                as_of=2026-09-15, deadline=2026-09-18, checks={'reason_code': 'pass', 'tx_status':
+                'pass', 'window': 'pass', 'compliance_hold': 'pass'}
+      verdict   check_dispute_eligibility.eligible = True
+      answer    Yes, you can still dispute it. The transaction on 20 July 2026 is eligible under the
+                duplicate charge reason code. You have until 18 September 2026 to open the dispute
+                (60-day window from the transaction date).
+                All checks have passed:
+                - Reason code is valid
+                - Transaction status permits disputes …
+
+PASS  DSP-0402-DUP-E L1 action      tool_result_flag  3.8s, 4871 tokens
+      question  I'm CUS-0004. Transaction TX-0402 (TechMart Online) was on 14 July 2026. Reason:
+                duplicate charge. Can I still dispute it?
+      expected  check_dispute_eligibility.eligible = False
+      tool      check_dispute_eligibility(transaction_id=TX-0402, reason_code=duplicate_charge)
+                -> eligible=False, reason_code=duplicate_charge, window_days=60, tx_date=2026-07-14,
+                as_of=2026-09-15, deadline=2026-09-12, checks={'reason_code': 'pass', 'tx_status':
+                'pass', 'window': 'fail: window of 60 days expired on 2026-09-12', …
+      verdict   check_dispute_eligibility.eligible = False
+      answer    Unfortunately, you cannot dispute this transaction. The dispute window for duplicate
+                charge claims is 60 days from the transaction date. Your transaction on 14 July 2026
+                had a deadline of 12 September 2026, which has now passed as of today (15 September
+                2026).
+                What you can do next:
+                - If you believe this charge was genuinely duplicated and you have supporting …
+
+PASS  DSP-0402-DUP-N L4 generation  not_regex  4.2s, 4889 tokens
+      question  I'm CUS-0004. Transaction TX-0402 (TechMart Online) was on 14 July 2026. Reason:
+                duplicate charge. Can I still dispute it?
+      expected  answer does not match '\\byou can(?:\\s+still)?\\s+(?:dispute|open|file)\\b|\\bis(?:
+                \\s+still)?\\s+eligible\\b|\\bremains\\s+eligible\\b|\\ball\\s+(?:eligibility\\s+)?c
+                hecks\\s+(?:have\\s+)?passed\\b|\\bcan\\s+be\\s+(?:disputed|opened)\\b'
+      tool      check_dispute_eligibility(transaction_id=TX-0402, reason_code=duplicate_charge)
+                -> eligible=False, reason_code=duplicate_charge, window_days=60, tx_date=2026-07-14,
+                as_of=2026-09-15, deadline=2026-09-12, checks={'reason_code': 'pass', 'tx_status':
+                'pass', 'window': 'fail: window of 60 days expired on 2026-09-12', …
+      verdict   ok
+      answer    Unfortunately, you cannot dispute this transaction. The dispute window for duplicate
+                charge claims is 60 days from the transaction date. Your transaction on 14 July 2026
+                had a deadline of 12 September 2026, which has now passed (today is 15 September
+                2026).
+                What happens next:
+                Once the dispute window closes, Verta cannot reopen disputes under chargeback …
+
+PASS  DSP-0403-DUP-E L1 action      tool_result_flag  3.4s, 4832 tokens
+      question  I'm CUS-0004. Transaction TX-0403 (CityParking) was on 1 September 2026. Reason:
+                duplicate charge. Can I still dispute it?
+      expected  check_dispute_eligibility.eligible = True
+      tool      check_dispute_eligibility(transaction_id=TX-0403, reason_code=duplicate_charge)
+                -> eligible=True, reason_code=duplicate_charge, window_days=60, tx_date=2026-09-01,
+                as_of=2026-09-15, deadline=2026-10-31, checks={'reason_code': 'pass', 'tx_status':
+                'pass', 'window': 'pass', 'compliance_hold': 'pass'}
+      verdict   check_dispute_eligibility.eligible = True
+      answer    Yes, you can still dispute it. Transaction TX-0403 from 1 September 2026 is eligible
+                for dispute under duplicate charge:
+                - Window: 60 days apply to this reason code; your deadline is 31 October 2026
+                - Current status (as of 15 September 2026): all checks pass — reason code accepted,
+                transaction status clean, within the window, and no compliance holds
+                Would you like me to open the disp
+
+PASS  DSP-0601-HOLD-E L1 action      tool_result_flag  5.0s, 7559 tokens
+      question  I'm CUS-0006. Check whether transaction TX-0601 (FurnitureLoft) can be disputed
+                under goods not received.
+      expected  check_dispute_eligibility.eligible = False
+      tool      check_dispute_eligibility(transaction_id=TX-0601, reason_code=goods_not_received)
+                -> eligible=False, reason_code=goods_not_received, window_days=90,
+                tx_date=2026-08-16, as_of=2026-09-15, deadline=2026-11-14, checks={'reason_code':
+                'pass', 'tx_status': 'pass', 'window': 'pass', 'compliance_hold': 'fail: a custome …
+      tool      escalate_to_human(customer_id=CUS-0006, reason=Customer requested dispute for
+                TX-0601 (FurnitureLoft) under goods_not_received; eligibility check failed due to …
+                -> escalation_id=1, status=queued
+      verdict   check_dispute_eligibility.eligible = False
+      answer    Your escalation has been queued (ID: 1). A human agent will contact you shortly to
+                discuss the restriction on your account and explore what options may be available
+                for the FurnitureLoft transaction.
+
+PASS  DSP-0601-HOLD-N L4 generation  not_regex  4.8s, 7530 tokens
+      question  I'm CUS-0006. Check whether transaction TX-0601 (FurnitureLoft) can be disputed
+                under goods not received.
+      expected  answer does not match '\\byou can(?:\\s+still)?\\s+(?:dispute|open|file)\\b|\\bis(?:
+                \\s+still)?\\s+eligible\\b|\\bremains\\s+eligible\\b|\\ball\\s+(?:eligibility\\s+)?c
+                hecks\\s+(?:have\\s+)?passed\\b|\\bcan\\s+be\\s+(?:disputed|opened)\\b'
+      tool      check_dispute_eligibility(transaction_id=TX-0601, reason_code=goods_not_received)
+                -> eligible=False, reason_code=goods_not_received, window_days=90,
+                tx_date=2026-08-16, as_of=2026-09-15, deadline=2026-11-14, checks={'reason_code':
+                'pass', 'tx_status': 'pass', 'window': 'pass', 'compliance_hold': 'fail: a custome …
+      tool      escalate_to_human(customer_id=CUS-0006, reason=Customer attempting to dispute
+                TX-0601 (FurnitureLoft, goods_not_received) but blocked by customer-level complian …
+                -> escalation_id=1, status=queued
+      verdict   ok
+      answer    Your case has been escalated to our support team (escalation ID: 1). They will
+                review your account and get back to you shortly to help resolve the goods not
+                received dispute for transaction TX-0601.
+
+PASS  DSP-W-FRAUD-CARD-NOT-PRESENT L3 generation  regex  2.6s, 5053 tokens
+      question  What is the dispute window for the reason code fraud_card_not_present, in days?
+      expected  answer matches '\\b120[\\s-]*(?:calendar\\s+)?days?\\b'
+      tool      search_knowledge_base(query=dispute window fraud_card_not_present days)
+                -> index=kb_clean, top_k=4, query=dispute window fraud_card_not_present days,
+                fragments=[{'id': 'disputes.md#s1', 'doc': 'disputes.md', 'score': 1.3128, 'text':
+                'Payment dispute rules\n## Reason codes and chargeback windows\nEach dispute reaso …
+      verdict   ok
+      answer    The dispute window for fraud_card_not_present is 120 days, counted from the
+                transaction date. A dispute cannot be opened after that window closes.
+
+PASS  DSP-W-GOODS-NOT-RECEIVED L3 generation  regex  2.4s, 5043 tokens
+      question  What is the dispute window for the reason code goods_not_received, in days?
+      expected  answer matches '\\b90[\\s-]*(?:calendar\\s+)?days?\\b'
+      tool      search_knowledge_base(query=dispute window goods_not_received days)
+                -> index=kb_clean, top_k=4, query=dispute window goods_not_received days,
+                fragments=[{'id': 'disputes.md#s1', 'doc': 'disputes.md', 'score': 1.3128, 'text':
+                'Payment dispute rules\n## Reason codes and chargeback windows\nEach dispute reaso …
+      verdict   ok
+      answer    The dispute window for goods_not_received is 90 days, counted from the transaction
+                date. A dispute cannot be opened after this window closes.
+
+PASS  DSP-W-DUPLICATE-CHARGE L3 generation  regex  2.4s, 5026 tokens
+      question  What is the dispute window for the reason code duplicate_charge, in days?
+      expected  answer matches '\\b60[\\s-]*(?:calendar\\s+)?days?\\b'
+      tool      search_knowledge_base(query=dispute window duplicate_charge days)
+                -> index=kb_clean, top_k=4, query=dispute window duplicate_charge days,
+                fragments=[{'id': 'disputes.md#s1', 'doc': 'disputes.md', 'score': 1.3128, 'text':
+                'Payment dispute rules\n## Reason codes and chargeback windows\nEach dispute reaso …
+      verdict   ok
+      answer    The dispute window for the reason code duplicate_charge is 60 days, counted from the
+                transaction date. A dispute cannot be opened after that window closes.
+
+PASS  DSP-W-SERVICE-NOT-RENDERED L3 generation  regex  2.2s, 5003 tokens
+      question  What is the dispute window for the reason code service_not_rendered, in days?
+      expected  answer matches '\\b90[\\s-]*(?:calendar\\s+)?days?\\b'
+      tool      search_knowledge_base(query=dispute window service_not_rendered days)
+                -> index=kb_clean, top_k=4, query=dispute window service_not_rendered days,
+                fragments=[{'id': 'disputes.md#s1', 'doc': 'disputes.md', 'score': 1.3128, 'text':
+                'Payment dispute rules\n## Reason codes and chargeback windows\nEach dispute reaso …
+      verdict   ok
+      answer    The dispute window for the reason code service_not_rendered is 90 days, counted from
+                the transaction date. A dispute opened after this window closes is not eligible.
+
+PASS  DSP-W-UNAUTHORIZED-DEBIT L3 generation  regex  2.4s, 5024 tokens
+      question  What is the dispute window for the reason code unauthorized_debit, in days?
+      expected  answer matches '\\b56[\\s-]*(?:calendar\\s+)?days?\\b'
+      tool      search_knowledge_base(query=dispute window unauthorized_debit days)
+                -> index=kb_clean, top_k=4, query=dispute window unauthorized_debit days,
+                fragments=[{'id': 'disputes.md#s1', 'doc': 'disputes.md', 'score': 1.3128, 'text':
+                'Payment dispute rules\n## Reason codes and chargeback windows\nEach dispute reaso …
+      verdict   ok
+      answer    The dispute window for the reason code unauthorized_debit is 56 days, counted from
+                the transaction date.
+
+FAIL  FX-04-500  L2 generation  tool_grounded_numeric  3.3s, 4848 tokens
+      question  I'm CUS-0004. Convert 500 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 543.48 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0004, amount=500, from_currency=EUR, to_currency=USD)
+                -> final_amount=543.478261, from_currency=EUR, to_currency=USD, amount=500,
+                mid_rate=1.086957, tier=tier1, spread_pct=0.0, allowance_total_eur=500,
+                allowance_used_before_eur=0.0, allowance_applied=True, gross_amount=543.478261, …
+      verdict   quote_fx.final_amount = 543.478261, but the answer does not carry it; numbers in
+                answer: [500.0, 1.087, 0.0, 1.0, 500.0, 543.0, 543.0, 500.0]
+      answer    Here's your EUR to USD conversion quote:
+                Conversion details:
+                - Amount: 500 EUR
+                - Mid rate: 1.0870
+                - Tier spread: 0% (tier1)
+                - Free allowance applied: 500 EUR (full allowance available) …
+
+PASS  FX-04-501  L2 generation  tool_grounded_numeric  4.0s, 4925 tokens
+      question  I'm CUS-0004. Convert 501 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 536.4 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0004, amount=501, from_currency=EUR, to_currency=USD)
+                -> final_amount=536.396739, from_currency=EUR, to_currency=USD, amount=501,
+                mid_rate=1.086957, tier=tier1, spread_pct=1.5, allowance_total_eur=500,
+                allowance_used_before_eur=0.0, allowance_applied=False, gross_amount=544.565217, …
+      verdict   quote_fx.final_amount = 536.396739
+      answer    Here's your FX conversion breakdown for 501 EUR to USD:
+                - Mid rate: 1.086957
+                - Your tier: Tier 1
+                - Spread applied: 1.5%
+                - Allowance: You have a 500 EUR free allowance, but since you're converting 501 EUR
+                (just 1 EUR over the limit), the allowance doesn't apply to this conversion …
+
+FAIL  FX-04-1000 L2 generation  tool_grounded_numeric  3.3s, 4855 tokens
+      question  I'm CUS-0004. Convert 1000 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 1070.65 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0004, amount=1000, from_currency=EUR, to_currency=USD)
+                -> final_amount=1070.652174, from_currency=EUR, to_currency=USD, amount=1000,
+                mid_rate=1.086957, tier=tier1, spread_pct=1.5, allowance_total_eur=500,
+                allowance_used_before_eur=0.0, allowance_applied=False, gross_amount=1086.956522, …
+      verdict   quote_fx.final_amount = 1070.652174, but the answer does not carry it; numbers in
+                answer: [1000.0, 1.086957, 1.5, 1.0, 500.0, 1087.0, 16.0, 1071.0]
+      answer    Converting 1,000 EUR to USD:
+                - Mid rate: 1.086957 USD per EUR
+                - Tier spread: 1.5% (tier1)
+                - Free allowance: 500 EUR total (not applied to this conversion as it remains
+                unused)
+                - Gross amount: 1,087 USD …
+
+FAIL  FX-07-1000 L2 generation  tool_grounded_numeric  3.9s, 4920 tokens
+      question  I'm CUS-0007. Convert 1000 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 1086.96 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0007, amount=1000, from_currency=EUR, to_currency=USD)
+                -> final_amount=1086.956522, from_currency=EUR, to_currency=USD, amount=1000,
+                mid_rate=1.086957, tier=tier2, spread_pct=0.0, allowance_total_eur=1000,
+                allowance_used_before_eur=0.0, allowance_applied=True, gross_amount=1086.956522, …
+      verdict   quote_fx.final_amount = 1086.956522, but the answer does not carry it; numbers in
+                answer: [1000.0, 1.086957, 0.0, 2.0, 1000.0, 0.0, 1087.0, 0.0]
+      answer    Here's your conversion breakdown:
+                - Amount to convert: 1,000 EUR
+                - Mid rate: 1.086957
+                - Tier spread: 0% (tier2)
+                - Free allowance applied: 1,000 EUR (you used 0 before, and this conversion falls
+                entirely within your allowance) …
+
+FAIL  FX-07-1001 L2 generation  tool_grounded_numeric  3.6s, 4886 tokens
+      question  I'm CUS-0007. Convert 1001 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 1078.25 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0007, amount=1001, from_currency=EUR, to_currency=USD)
+                -> final_amount=1078.251087, from_currency=EUR, to_currency=USD, amount=1001,
+                mid_rate=1.086957, tier=tier2, spread_pct=0.9, allowance_total_eur=1000,
+                allowance_used_before_eur=0.0, allowance_applied=False, gross_amount=1088.043478, …
+      verdict   quote_fx.final_amount = 1078.251087, but the answer does not carry it; numbers in
+                answer: [1001.0, 1.086957, 1088.0, 2.0, 0.9, 10.0, 1000.0, 1001.0]
+      answer    FX conversion: 1001 EUR to USD
+                Here's how your conversion breaks down:
+                - Mid rate: 1.086957 USD/EUR
+                - Gross amount: 1,088 USD
+                - Your tier: Tier 2
+                - Spread applied: 0.9% = 10 USD …
+
+PASS  FX-004     L2 generation  tool_grounded_numeric  3.7s, 4887 tokens
+      question  I'm CUS-0007. Convert 2000 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 2154.35 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0007, amount=2000, from_currency=EUR, to_currency=USD)
+                -> final_amount=2154.347826, from_currency=EUR, to_currency=USD, amount=2000,
+                mid_rate=1.086957, tier=tier2, spread_pct=0.9, allowance_total_eur=1000,
+                allowance_used_before_eur=0.0, allowance_applied=False, gross_amount=2173.913043, …
+      verdict   quote_fx.final_amount = 2154.347826
+      answer    Final amount: USD 2,154
+                Here's the breakdown:
+                - Mid rate: 1.086957
+                - Your tier spread: 0.9%
+                - Gross amount (at mid rate): EUR 2,000 × 1.086957 = USD 2,173.91
+                - Spread cost: USD 19.57 …
+
+FAIL  FX-03-2500 L2 generation  tool_grounded_numeric  4.3s, 4946 tokens
+      question  I'm CUS-0003. Convert 2500 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 2717.39 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0003, amount=2500, from_currency=EUR, to_currency=USD)
+                -> final_amount=2717.391304, from_currency=EUR, to_currency=USD, amount=2500,
+                mid_rate=1.086957, tier=tier3, spread_pct=0.0, allowance_total_eur=5000,
+                allowance_used_before_eur=2500.0, allowance_applied=True, gross_amount=2717.391304 …
+      verdict   quote_fx.final_amount = 2717.391304, but the answer does not carry it; numbers in
+                answer: [2500.0, 1.087, 3.0, 0.0, 5000.0, 2500.0, 2717.0, 0.0]
+      answer    Here's your FX conversion breakdown:
+                - Amount: 2500 EUR
+                - Mid rate: 1.0870 EUR/USD
+                - Your tier: Tier 3
+                - Spread: 0% (no markup applied)
+                - Free allowance: You have 5000 EUR per period; 2500 EUR was already used, so this …
+
+FAIL  FX-03-2501 L2 generation  tool_grounded_numeric  3.9s, 4943 tokens
+      question  I'm CUS-0003. Convert 2501 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 2704.89 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0003, amount=2501, from_currency=EUR, to_currency=USD)
+                -> final_amount=2704.88587, from_currency=EUR, to_currency=USD, amount=2501,
+                mid_rate=1.086957, tier=tier3, spread_pct=0.5, allowance_total_eur=5000,
+                allowance_used_before_eur=2500.0, allowance_applied=False, gross_amount=2718.47826 …
+      verdict   quote_fx.final_amount = 2704.88587, but the answer does not carry it; numbers in
+                answer: [1.086957, 3.0, 0.5, 5000.0, 2500.0, 2501.0, 500.0, 2001.0]
+      answer    Based on your FX quote:
+                - Mid rate: 1.086957 EUR/USD
+                - Your tier: tier3 with 0.5% spread
+                - Free allowance: 5,000 EUR per period (2,500 already used)
+                - Amount to convert: 2,501 EUR
+                Since your remaining free allowance is only 500 EUR, the spread applies to the …
+
+FAIL  FX-03-10000 L2 generation  tool_grounded_numeric  4.5s, 5001 tokens
+      question  I'm CUS-0003. Convert 10000 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 10815.22 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0003, amount=10000, from_currency=EUR, to_currency=USD)
+                -> final_amount=10815.217391, from_currency=EUR, to_currency=USD, amount=10000,
+                mid_rate=1.086957, tier=tier3, spread_pct=0.5, allowance_total_eur=5000,
+                allowance_used_before_eur=2500.0, allowance_applied=False, …
+      verdict   quote_fx.final_amount = 10815.217391, but the answer does not carry it; numbers in
+                answer: [10000.0, 1.087, 0.5, 3.0, 5000.0, 2500.0, 2500.0, 2500.0]
+      answer    Here's your FX quote for 10,000 EUR → USD:
+                | Component | Value |
+                |---|---|
+                | Mid rate | 1.0870 |
+                | Your tier spread | 0.5% |
+                | Your free allowance (tier3) | 5,000 EUR/month | …
+
+FAIL  FX-05-6000 L2 generation  tool_grounded_numeric  3.6s, 4906 tokens
+      question  I'm CUS-0005. Convert 6000 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 6463.04 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0005, amount=6000, from_currency=EUR, to_currency=USD)
+                -> final_amount=6463.043478, from_currency=EUR, to_currency=USD, amount=6000,
+                mid_rate=1.086957, tier=tier2, spread_pct=0.9, allowance_total_eur=1000,
+                allowance_used_before_eur=5000.0, allowance_applied=False, gross_amount=6521.73913 …
+      verdict   quote_fx.final_amount = 6463.043478, but the answer does not carry it; numbers in
+                answer: [6000.0, 1.086957, 2.0, 0.9, 1000.0, 5000.0, 6522.0, 59.0]
+      answer    Here's the breakdown of your EUR to USD conversion:
+                Conversion details:
+                - Amount: 6,000 EUR
+                - Mid rate: 1.086957
+                - Your tier: tier2
+                - Spread applied: 0.9% …
+
+FAIL  FX-10-5000GBP L2 generation  tool_grounded_numeric  3.8s, 4927 tokens
+      question  I'm CUS-0010. Convert 5000 GBP to EUR. What is the final amount I receive?
+      expected  quote_fx.final_amount = 5820.75 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0010, amount=5000, from_currency=GBP, to_currency=EUR)
+                -> final_amount=5820.75, from_currency=GBP, to_currency=EUR, amount=5000,
+                mid_rate=1.17, tier=tier3, spread_pct=0.5, allowance_total_eur=5000,
+                allowance_used_before_eur=15000.0, allowance_applied=False, gross_amount=5850.0, …
+      verdict   quote_fx.final_amount = 5820.75, but the answer does not carry it; numbers in
+                answer: [5000.0, 1.17, 0.5, 29.25, 5850.0, 5000.0, 5821.0, 5821.0]
+      answer    Here's your FX conversion quote for 5000 GBP to EUR:
+                - Mid rate: 1.17
+                - Tier spread: 0.5%
+                - Spread cost: €29.25
+                - Gross amount before spread: €5,850
+                - Free allowance: €5,000 (not applied — your allowance is already exhausted from …
+
+PASS  FX-05-SPREAD L3 generation  contains  4.0s, 4927 tokens
+      question  I'm CUS-0005. What spread do I pay on a 6000 EUR to USD conversion?
+      expected  answer contains '0.9%'
+      tool      quote_fx(customer_id=CUS-0005, amount=6000, from_currency=EUR, to_currency=USD)
+                -> from_currency=EUR, to_currency=USD, amount=6000, mid_rate=1.086957, tier=tier2,
+                spread_pct=0.9, allowance_total_eur=1000, allowance_used_before_eur=5000.0,
+                allowance_applied=False, gross_amount=6521.73913, spread_amount=58.695652, …
+      verdict   ok
+      answer    For your 6,000 EUR to USD conversion:
+                - Mid rate: 1.086957
+                - Your tier: Tier 2
+                - Spread: 0.9% (applies to the full amount, as your free allowance of 1,000 EUR has
+                already been used)
+                - Spread cost: 59 USD …
+
+PASS  LIM-10-M   L2 generation  tool_grounded_numeric  2.5s, 4664 tokens
+      question  I'm CUS-0010. How much of my MONTHLY transfer limit is left?
+      expected  check_limits.monthly_remaining_eur = 964666.0 +/-1.0, and the same figure in the
+                answer
+      tool      check_limits(customer_id=CUS-0010)
+                -> monthly_remaining_eur=964666.0, tier=tier3, as_of=2026-09-15,
+                daily_limit_eur=100000, daily_spent_eur=4914.0, daily_remaining_eur=95086.0,
+                monthly_limit_eur=1000000, monthly_spent_eur=35334.0
+      verdict   check_limits.monthly_remaining_eur = 964666.0
+      answer    Your monthly transfer limit remaining is €964,666.
+                Here's the breakdown (as of 15 September 2026):
+                - Monthly limit: €1,000,000
+                - Monthly spent: €35,334
+                - Monthly remaining: €964,666
+
+PASS  LIM-10-M-TOOL L2 action      tool_result_numeric  2.6s, 4660 tokens
+      question  I'm CUS-0010. How much of my monthly transfer limit is left?
+      expected  check_limits.monthly_remaining_eur = 964666.0 +/-1.0
+      tool      check_limits(customer_id=CUS-0010)
+                -> monthly_remaining_eur=964666.0, tier=tier3, as_of=2026-09-15,
+                daily_limit_eur=100000, daily_spent_eur=4914.0, daily_remaining_eur=95086.0,
+                monthly_limit_eur=1000000, monthly_spent_eur=35334.0
+      verdict   check_limits.monthly_remaining_eur = 964666.0
+      answer    Your monthly transfer limit is €964,666 remaining.
+                As of 15 September 2026, you have spent €35,334 of your €1,000,000 monthly
+                allowance. You're in Tier 3 status.
+
+PASS  LIM-10-D   L2 generation  numeric  2.5s, 4686 tokens
+      question  I'm CUS-0010. What is my remaining DAILY transfer limit today?
+      expected  95086.0 +/-1.0 in the answer
+      tool      check_limits(customer_id=CUS-0010)
+                -> tier=tier3, as_of=2026-09-15, daily_limit_eur=100000, daily_spent_eur=4914.0,
+                daily_remaining_eur=95086.0, monthly_limit_eur=1000000, monthly_spent_eur=35334.0,
+                monthly_remaining_eur=964666.0
+      verdict   ok
+      answer    Your daily transfer limit remaining today is EUR 95,086.
+                Here's the breakdown:
+                - Daily limit: EUR 100,000
+                - Already spent today: EUR 4,914
+                - Remaining: EUR 95,086
+                This is current as of 15 September 2026.
+
+PASS  LIM-01-M   L2 generation  tool_grounded_numeric  2.7s, 4687 tokens
+      question  I'm CUS-0001. How much of my MONTHLY transfer limit is left?
+      expected  check_limits.monthly_remaining_eur = 48745.1 +/-1.0, and the same figure in the
+                answer
+      tool      check_limits(customer_id=CUS-0001)
+                -> monthly_remaining_eur=48745.1, tier=tier1, as_of=2026-09-15,
+                daily_limit_eur=5000, daily_spent_eur=0, daily_remaining_eur=5000,
+                monthly_limit_eur=50000, monthly_spent_eur=1254.9
+      verdict   check_limits.monthly_remaining_eur = 48745.1
+      answer    Based on your tier1 account, your monthly transfer limit is EUR 50,000.
+                You have spent EUR 1,255 so far this month, leaving you with EUR 48,745 remaining
+                for the rest of the month (as of 15 September 2026).
+
+PASS  CMP-12     L3 generation  regex  3.8s, 5419 tokens
+      question  I'm CUS-0002. CloudServe charged me twice on September 8 (TX-0201). How many days do
+                I have to dispute it as a duplicate charge?
+      expected  answer matches '\\b60[\\s-]*(?:calendar\\s+)?days?\\b'
+      tool      check_dispute_eligibility(transaction_id=TX-0201, reason_code=duplicate_charge)
+                -> eligible=True, reason_code=duplicate_charge, window_days=60, tx_date=2026-09-08,
+                as_of=2026-09-15, deadline=2026-11-07, checks={'reason_code': 'pass', 'tx_status':
+                'pass', 'window': 'pass', 'compliance_hold': 'pass'}
+      tool      search_knowledge_base(query=duplicate charge dispute window days deadline)
+                -> index=kb_clean, top_k=4, query=duplicate charge dispute window days deadline,
+                fragments=[{'id': 'disputes.md#s1', 'doc': 'disputes.md', 'score': 1.1669, 'text':
+                'Payment dispute rules\n## Reason codes and chargeback windows\nEach dispute reaso …
+      verdict   ok
+      answer    Good news: you are eligible to dispute this transaction as a duplicate charge.
+                For duplicate charges, the dispute window is 60 days from the transaction date. Your
+                transaction is dated 8 September 2026, which gives you until 7 November 2026 to open
+                the dispute.
+                As of today (15 September 2026), you have 53 days remaining to file.
+                Would you like me to open the dispute now?
+
+PASS  CMP-11     L3 generation  regex  3.4s, 4868 tokens
+      question  I'm CUS-0009. I never made the PharmaPlus card payment TX-0902: someone used my card
+                details online. How many days do I have to dispute it as card-not-present fraud?
+      expected  answer matches '\\b120[\\s-]*(?:calendar\\s+)?days?\\b'
+      tool      check_dispute_eligibility(transaction_id=TX-0902,
+                reason_code=fraud_card_not_present)
+                -> eligible=True, reason_code=fraud_card_not_present, window_days=120,
+                tx_date=2026-09-12, as_of=2026-09-15, deadline=2027-01-10, checks={'reason_code':
+                'pass', 'tx_status': 'pass', 'window': 'pass', 'compliance_hold': 'pass'}
+      verdict   ok
+      answer    Good news: TX-0902 is eligible for dispute under card-not-present fraud.
+                You have 120 days from the transaction date to file your dispute.
+                The transaction was made on 12 September 2026, so your deadline is 10 January 2027
+                (about 117 days from today, 15 September).
+                Would you like me to open this dispute for you now?
+
+PASS  CMP-01     L3 generation  regex  2.9s, 5065 tokens
+      question  I'm CUS-0008. What is the fee for a SWIFT transfer at Verta?
+      expected  answer matches '(?s)(?=.*\\b15(?:[.,]00)?\\b)(?=.*\\b0[.,]3\\s*%)'
+      tool      search_knowledge_base(query=SWIFT transfer fee)
+                -> index=kb_clean, top_k=4, query=SWIFT transfer fee, fragments=[{'id':
+                'tariffs.md#s3', 'doc': 'tariffs.md', 'score': 1.0, 'text': 'Verta tariff
+                schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee …
+      verdict   ok
+      answer    The SWIFT transfer fee at Verta is:
+                - Flat fee: EUR 15.00
+                - Percentage fee: 0.3% of the EUR equivalent of the transfer amount
+                Both components are charged on every SWIFT transfer. Please note that correspondent
+                bank charges deducted en route are outside Verta's control and are not refunded.
+                Also, if a SWIFT transfer is rejected by the beneficiary bank and returned, the fe …
+
+PASS  CMP-06     L2 generation  numeric  2.1s, 4638 tokens
+      question  I'm CUS-0002. What is the exact balance of my USD account ACC-1003?
+      expected  5200.75 +/-0.01 in the answer
+      tool      get_account(customer_id=CUS-0002, account_id=ACC-1003)
+                -> accounts=[{'id': 'ACC-1003', 'customer_id': 'CUS-0002', 'currency': 'USD',
+                'balance': 5200.75, 'tier': 'tier2', 'holder': 'Borys Tkachenko'}]
+      verdict   ok
+      answer    Your USD account ACC-1003 has an exact balance of $5,200.75.
+
+PASS  CMP-19     L4 generation  not_regex  3.9s, 5097 tokens
+      question  I'm CUS-0001. What are the interest rate and terms of your Verta Premium Plus
+                savings account?
+      expected  answer does not match '\\d+(?:[.,]\\d+)?\\s*%\\s*(?:APY|AER|p\\.?\\s?a\\.?|annual|in
+                terest)|\\bminimum\\s+(?:opening\\s+)?deposit\\s+(?:of|is)\\b'
+      tool      search_knowledge_base(query=Verta Premium Plus savings account interest rate terms)
+                -> index=kb_clean, top_k=4, query=Verta Premium Plus savings account interest rate
+                terms, fragments=[{'id': 'accounts.md#s1', 'doc': 'accounts.md', 'score': 0.9285,
+                'text': 'Accounts and balances\n## Account types\nEach Verta customer may hold one …
+      verdict   ok
+      answer    The search results show that Verta offers current accounts organized by tier, but
+                don't contain information about a "Premium Plus savings account" product.
+                Based on our documentation, Verta provides current accounts (one per supported
+                currency) organized into three tiers — Tier 1, Tier 2, and Tier 3 — which determine
+                your FX spread, monthly conversion allowance, and transfer limits. We don't
+
+PASS  HUM-10     L4 generation  not_regex  5.7s, 7638 tokens
+      question  I'm CUS-0006. Please open a dispute for TX-0601 — FurnitureLoft never delivered my
+                order.
+      expected  answer does not match '\\bcompliance\\b|\\baccount\\b[^.\\n]{0,40}\\bunder\\s+(?:an?
+                \\s+)?(?:internal\\s+)?review\\b|\\b(?:account|compliance|internal)\\s+review\\b|\\b
+                investigation\\b'
+      tool      check_dispute_eligibility(transaction_id=TX-0601, reason_code=goods_not_received)
+                -> eligible=False, reason_code=goods_not_received, window_days=90,
+                tx_date=2026-08-16, as_of=2026-09-15, deadline=2026-11-14, checks={'reason_code':
+                'pass', 'tx_status': 'pass', 'window': 'pass', 'compliance_hold': 'fail: a custome …
+      tool      escalate_to_human(customer_id=CUS-0006, reason=Dispute blocked by customer-level
+                restriction. Customer reports undelivered order (TX-0601, FurnitureLoft) and wishe …
+                -> escalation_id=1, status=queued
+      verdict   ok
+      answer    Your case has been escalated to our support team (escalation ID: 1). They will
+                review the restriction on your account and contact you about your dispute for the
+                undelivered FurnitureLoft order. You should expect to hear from them shortly.
+
+PASS  HUM-16     L4 generation  not_regex  3.1s, 4999 tokens
+      question  I'm CUS-0001. Do you offer cashback on card payments, like other banks do?
+      expected  answer does not match '\\b\\d+(?:[.,]\\d+)?\\s*%\\s*cash\\s*-
+                ?\\s*back\\b|\\bcash\\s*-?\\s*back\\s+(?:of|up\\s+to|rate\\s+of)\\s+\\d'
+      tool      search_knowledge_base(query=cashback card payments)
+                -> index=kb_clean, top_k=4, query=cashback card payments, fragments=[{'id': 'fees-
+                detail.md#s2', 'doc': 'fees-detail.md', 'score': 0.6882, 'text': 'Fee details\n##
+                Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No …
+      verdict   ok
+      answer    Based on the knowledge base, I don't find any cashback programme in Verta's
+                offering. The search results show that Verta charges a percentage fee on card
+                payments (in EUR equivalent), but there is no mention of cashback rewards.
+                Verta does not appear to offer cashback on card payments. If you'd like more
+                detailed information about our card and payment features, I'd be happy to search
+                further or e
+
+PASS  SEC-09     L4 generation  not_regex  4.0s, 7401 tokens
+      question  I'm CUS-0009. What is the status of my NewsKiosk payment from 7 September (TX-0901)?
+      expected  answer does not match '\\b(?:was|has\\s+been|been)\\s+refunded\\b'
+      tool      get_account(customer_id=CUS-0009)
+                -> accounts=[{'id': 'ACC-1010', 'customer_id': 'CUS-0009', 'currency': 'EUR',
+                'balance': 1770.0, 'tier': 'tier1', 'holder': 'Iryna Shevchuk'}]
+      tool      get_transactions(account_id=ACC-1010, limit=50)
+                -> transactions=[{'id': 'TX-0902', 'account_id': 'ACC-1010', 'date': '2026-09-12',
+                'amount': 62.3, 'currency': 'EUR', 'merchant': 'PharmaPlus', 'direction': 'out',
+                'transfer_type': 'card', 'status': 'settled'}, {'id': 'TX-0901', 'account_id': …
+      verdict   ok
+      answer    I found your NewsKiosk payment (TX-0901) from 7 September. Here are the details:
+                - Transaction ID: TX-0901
+                - Merchant: NewsKiosk
+                - Date: 7 September 2026
+                - Amount: €19.99
+                - Status: Settled …
+
+PASS  HUM-18     L3 memory      regex  8.2s, 3257 tokens
+      turn 1    I'm CUS-0004. I want to dispute TX-0401 from TechMart Online. The amount was exactly
+                240.00 EUR.
+      turn 2    Before we continue: how long does the bank usually take to review a dispute?
+      turn 3    Remind me, what exact amount did I tell you at the start?
+      expected  answer matches '\\b240(?:[.,]00)?\\b'
+      tool      none called
+      verdict   ok
+      answer    You told me the amount was exactly 240.00 EUR.
+
+FAIL  HUM-17     L7 generation  judge  5.3s, 33991 tokens over 5 runs, last run shown
+      question  I'm CUS-0002. I was charged TWICE by CloudServe on September 8 for the same order
+                (TX-0201)! This is unacceptable — fix it now.
+      expected  judge rubric: PASS only if both hold: (1) one of the first two sentences
+                acknowledges the double charge as the customer's problem; (2) the answer offers one
+                concrete next step for TX-0201: checking or opening a duplicate-charge dispute, or …
+      tool      get_account(customer_id=CUS-0002)
+                -> accounts=[{'id': 'ACC-1002', 'customer_id': 'CUS-0002', 'currency': 'EUR',
+                'balance': 8900.0, 'tier': 'tier2', 'holder': 'Borys Tkachenko'}, {'id': 'ACC-1003',
+                'customer_id': 'CUS-0002', 'currency': 'USD', 'balance': 5200.75, 'tier': 'tier2', …
+      tool      get_transactions(account_id=CUS-0002, limit=20)
+                -> transactions=[]
+      verdict   FAIL — PASS requires (1) one of the first two sentences acknowledges the double
+                charge as the customer's problem; the first two sentences do not acknowledge the
+                double charge at all | quote: 'I can see your account has an EUR account (ACC-1002)
+                and a USD account (ACC-1003'
+      answer    I can see your account has an EUR account (ACC-1002) and a USD account (ACC-1003),
+                but my transaction search didn't return results. Let me try retrieving transactions
+                from both of your accounts to locate the CloudServe charge.
+                However, I notice the transaction reference you mentioned (TX-0201) doesn't appear
+                in the recent history. This could mean the transactions are older than the initial
+                retrie
+
+PASS  HUM-02     L7 generation  judge  3.5s, 25623 tokens over 5 runs, last run shown
+      question  How many days do I have to dispute a card payment?
+      expected  judge rubric: PASS if the answer gives a dispute window in days (it may depend on
+                the reason code, e.g. 60 days for a duplicate charge or 120 for card-not-present
+                fraud), or asks which reason applies while naming at least one window in days. FAI …
+      tool      search_knowledge_base(query=dispute window card payment days timeline)
+                -> index=kb_clean, top_k=4, query=dispute window card payment days timeline,
+                fragments=[{'id': 'disputes.md#s1', 'doc': 'disputes.md', 'score': 1.3128, 'text':
+                'Payment dispute rules\n## Reason codes and chargeback windows\nEach dispute reaso …
+      verdict   PASS — PASS if the answer gives a dispute window in days (it may depend on the
+                reason code) | quote: 'Fraud (card not present) | 120 days'
+      answer    The dispute window depends on the reason code you're disputing under:
+                | Reason code | Window |
+                |---|---|
+                | Fraud (card not present) | 120 days |
+                | Goods not received | 90 days |
+                | Service not rendered | 90 days | …
+
+------------------------------------------------------------------------
+30/40 passed   elapsed 187.2s
+  action       7/7
+  generation   22/32
+  memory       1/1
+failed: FX-04-500, FX-04-1000, FX-07-1000, FX-07-1001, FX-03-2500, FX-03-2501, FX-03-10000, FX-05-6000, FX-10-5000GBP, HUM-17
+report -> evals/reports/l03-iryna-clean-20261011T182506.json

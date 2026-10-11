@@ -1,0 +1,36 @@
+set l03-iryna (2 cases)  profile clean  prompt base.v1
+------------------------------------------------------------------------
+PASS  FX-07-1000 L2 generation  tool_grounded_numeric  3.7s, 4880 tokens
+      question  I'm CUS-0007. Convert 1000 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 1086.96 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0007, amount=1000, from_currency=EUR, to_currency=USD)
+                -> final_amount=1086.956522, from_currency=EUR, to_currency=USD, amount=1000,
+                mid_rate=1.086957, tier=tier2, spread_pct=0.0, allowance_total_eur=1000,
+                allowance_used_before_eur=0.0, allowance_applied=True, gross_amount=1086.956522, …
+      verdict   quote_fx.final_amount = 1086.956522
+      answer    You're on tier 2. Here's your conversion breakdown:
+                - Amount: 1000 EUR
+                - Mid rate: 1.086957
+                - Tier spread: 0% (no spread applied)
+                - Free allowance: 1000 EUR total; 0 EUR used before this conversion
+                - Allowance applied: Yes — your entire 1000 EUR conversion is covered by your free …
+
+PASS  FX-004     L2 generation  tool_grounded_numeric  3.8s, 4906 tokens
+      question  I'm CUS-0007. Convert 2000 EUR to USD. What is the final amount I receive?
+      expected  quote_fx.final_amount = 2154.35 +/-0.02, and the same figure in the answer
+      tool      quote_fx(customer_id=CUS-0007, amount=2000, from_currency=EUR, to_currency=USD)
+                -> final_amount=2154.347826, from_currency=EUR, to_currency=USD, amount=2000,
+                mid_rate=1.086957, tier=tier2, spread_pct=0.9, allowance_total_eur=1000,
+                allowance_used_before_eur=0.0, allowance_applied=False, gross_amount=2173.913043, …
+      verdict   quote_fx.final_amount = 2154.347826
+      answer    Here is your FX quote for converting 2000 EUR to USD:
+                - Mid-market rate: 1.086957
+                - Tier spread: 0.9% (tier2)
+                - Gross amount before spread: 2173.91 USD
+                - Spread charge: 19.57 USD
+                - Final amount you receive: 2154.35 USD …
+
+------------------------------------------------------------------------
+2/2 passed   elapsed 7.6s
+  generation   2/2
+report -> evals/reports/l03-iryna-clean-20261011T182602.json

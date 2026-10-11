@@ -1,0 +1,27 @@
+{
+  "id": "CMP-12",
+  "input": "I'm CUS-0002. CloudServe charged me twice on September 8 (TX-0201). How many days do I have to dispute it as a duplicate charge?",
+  "expected_output": "60 days",
+  "context": {
+    "customer_id": "CUS-0002",
+    "clock": "2026-09-15T10:00:00Z",
+    "transaction_id": "TX-0201",
+    "reason_code": "duplicate_charge"
+  },
+  "additional_metadata": {
+    "layer": "generation",
+    "oracle": "engine",
+    "assertion": "regex",
+    "pattern": "\\b60[\\s-]*(?:calendar\\s+)?days?\\b",
+    "source": "complaint",
+    "complaint": "C-12",
+    "contradicts": "C-11: support believes every dispute has 60 days; the help page in C-12 says 120. The engine settles both: duplicate_charge 60, fraud_card_not_present 120. Both complaints go into the set (CMP-11, CMP-12).",
+    "failure_mode": "wrong_window",
+    "severity": "high",
+    "runs": 1,
+    "added_in": "l03",
+    "gate": "daily",
+    "engine_call": "policy.DISPUTE_WINDOWS_DAYS['duplicate_charge'] = 60; disputes.check('duplicate_charge', 2026-09-08, 'settled', 2026-09-15, compliance_hold=False) -> eligible, deadline 2026-11-07",
+    "why_this_level": "the expected answer is a number of days, not a sentence: exact text equality (level 1) fails on any phrasing, a bare '60' (level 3 contains) also matches '600' or a date, so a level 3 regex anchored on the unit 'day(s)' is the cheapest check that still catches 90 or 120"
+  }
+}
